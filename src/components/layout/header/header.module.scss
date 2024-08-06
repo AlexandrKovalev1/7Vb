@@ -1,0 +1,66 @@
+.header {
+  position: relative;
+
+  grid-area: 1/1/2/2;
+
+  height: 75px;
+
+  font-size: var(--font-size-s);
+
+  background-color: var(--color-dark-secondary);
+
+  &.logged {
+    position: sticky;
+    top: 0;
+    grid-area: 1/2/2/3;
+    background-color: var(--color-dark-primary);
+  }
+
+  @media screen and (width <=768px) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 1024px;
+  height: 100%;
+  margin: 0 auto;
+
+  @media (width <= 1024px) {
+    padding: 0 15px;
+  }
+}
+
+.logoWrapper {
+  &.logged {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+  }
+}
+
+.logotipe {
+  max-height: 55px;
+}
+
+.navbarLoginBlock {
+  display: flex;
+  gap: 140px;
+  align-items: center;
+
+  @media screen and (width <=768px) {
+    gap: 70px;
+  }
+
+  @media screen and (width <=576px) {
+    gap: 30px;
+  }
+}
