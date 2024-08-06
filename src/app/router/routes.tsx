@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Navigate, RouterProvider, createHashRouter } from 'react-router-dom'
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import { Layout } from '@/components/layout/layout'
 import { Products } from '@/pages/products'
@@ -28,7 +28,7 @@ const DistributorOfPath = () => {
   return isAuth ? <Navigate to={PATH.PRODUCTS} /> : <div>home</div>
 }
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     children: [
       {
