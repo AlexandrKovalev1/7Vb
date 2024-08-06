@@ -33,7 +33,7 @@ const router = createHashRouter([
     children: [
       {
         element: <Navigate to={PATH.ROOT} />,
-        path: '/phantom/',
+        path: '/7Vb/',
       },
       {
         element: <DistributorOfPath />,
