@@ -11,7 +11,7 @@ import s from './purchaseBlock.module.scss'
 export const PurchaseBlock = () => {
   const [price, setPrice] = useState(28)
 
-  const handleOnSliderChange = (_, value: number | number[]) => {
+  const handleOnSliderChange = ({}, value: number | number[]) => {
     if (typeof value === 'number') {
       setPrice(2 * value)
     }
