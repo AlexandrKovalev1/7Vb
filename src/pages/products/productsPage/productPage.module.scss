@@ -1,0 +1,12 @@
+.productsContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, auto));
+  gap: 45px;
+  justify-content: center;
+
+  padding: 0 30px;
+
+  @media screen and (width <= 768px) {
+    padding: 0 15px;
+  }
+}

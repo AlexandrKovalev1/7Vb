@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+}
+
+.price {
+  b {
+    color: var(--color-dark-accent-1);
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+}
+
+.button {
+  flex-shrink: 0;
+  padding: 10px 50px;
+  border-radius: 10px;
+}

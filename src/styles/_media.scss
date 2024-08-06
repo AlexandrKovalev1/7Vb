@@ -1,0 +1,17 @@
+@mixin largeDesc {
+  @media screen and (width > 992px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (width > 768px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (width > 576px) {
+    @content;
+  }
+}

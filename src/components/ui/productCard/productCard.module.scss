@@ -1,0 +1,55 @@
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 350px;
+  height: 500px;
+  padding: 25px 25px 45px;
+
+  border-radius: 20px;
+}
+
+.cardCover {
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+}
+
+.blockInfo {
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    padding-bottom: 20px;
+    color: var(--color-dark-accent-1);
+  }
+}
+
+.subscribeStatus {
+  &.active {
+    span {
+      color: var(--color-dark-accent-1);
+    }
+  }
+
+  &.noneactive {
+    span {
+      color: #f00;
+    }
+  }
+
+  &.onupdate {
+    span {
+      color: #faff01;
+    }
+  }
+}
+
+.buttonBuy {
+  align-self: center;
+  padding: 13px 82px;
+  border-radius: 16px;
+}

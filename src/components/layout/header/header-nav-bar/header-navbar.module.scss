@@ -1,0 +1,12 @@
+.navList {
+  display: flex;
+  gap: 60px;
+
+  @media screen and (width <=768px) {
+    gap: 30px;
+  }
+
+  @media screen and (width <=576px) {
+    gap: 18px;
+  }
+}

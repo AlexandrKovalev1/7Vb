@@ -1,0 +1,88 @@
+button {
+  all: unset;
+}
+
+.burgerBtn {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 1099999;
+  top: 0;
+  right: 0;
+  transform: translate(-100%, 50%);
+
+  width: 24px;
+  height: 25px;
+
+  &:hover span {
+    background-color: var(--color-dark-accent-1);
+  }
+
+  &:hover span::before,
+  &:hover span::after {
+    background-color: var(--color-dark-accent-1);
+  }
+
+  span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: block;
+
+    width: 24px;
+    height: 3px;
+
+    background-color: var(--color-dark-icons);
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      transform: translateY(-10px);
+
+      display: block;
+
+      width: 24px;
+      height: 3px;
+
+      background-color: var(--color-dark-icons);
+    }
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      right: 0;
+      transform: translateY(10px);
+
+      display: block;
+
+      width: 24px;
+      height: 3px;
+
+      background-color: var(--color-dark-icons);
+    }
+  }
+
+  &.menuOpen {
+    &:hover span {
+      background-color: rgb(225 225 225 / 0%);
+    }
+
+    span {
+      background-color: rgb(225 225 225 / 0%);
+
+      &::before {
+        transform: rotate(45deg) translateY(0);
+        height: 4px;
+      }
+
+      &::after {
+        transform: rotate(-45deg) translateY(0);
+        width: 24px;
+        height: 4px;
+      }
+    }
+  }
+}
