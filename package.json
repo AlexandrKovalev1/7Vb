@@ -1,6 +1,6 @@
 {
   "name": "vb7",
-  "private": true,
+  "private": false,
   "homepage": "https://alexandrkovalev1.github.io/7Vb/",
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "format": "prettier --write src",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input"
   },
   "dependencies": {
