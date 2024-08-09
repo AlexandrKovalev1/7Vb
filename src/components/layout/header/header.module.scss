@@ -1,5 +1,6 @@
 .header {
-  position: relative;
+  position: sticky;
+  z-index: 999999999999;
 
   grid-area: 1/1/2/2;
 
@@ -10,9 +11,9 @@
   background-color: var(--color-dark-secondary);
 
   &.logged {
-    position: sticky;
     top: 0;
     grid-area: 1/2/2/3;
+    padding: 0 40px;
     background-color: var(--color-dark-primary);
   }
 
@@ -30,7 +31,6 @@
   justify-content: space-between;
 
   width: 100%;
-  max-width: 1024px;
   height: 100%;
   margin: 0 auto;
 

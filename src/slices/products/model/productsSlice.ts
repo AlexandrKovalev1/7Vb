@@ -1,5 +1,5 @@
 import { createAppSlice } from '@/common/utils/createAppSilce'
-import { productsApi } from '@/slices/products/api/api'
+import { productsApi } from '@/slices/products/api/productsApi'
 import { Product } from '@/slices/products/products.types'
 
 const slice = createAppSlice({

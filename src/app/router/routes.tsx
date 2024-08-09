@@ -2,9 +2,12 @@ import { useSelector } from 'react-redux'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import { Layout } from '@/components/layout/layout'
+import { Balance } from '@/pages/balance/balance'
+import { News } from '@/pages/news'
 import { Products } from '@/pages/products'
 import { ProductPage } from '@/pages/products/productPage'
 import { ProductsPage } from '@/pages/products/productsPage'
+import { Support } from '@/pages/support/support'
 import { selectIsAuth } from '@/slices/auth/model/authSlice'
 
 export const PATH = {
@@ -54,15 +57,15 @@ const router = createBrowserRouter([
         path: PATH.PRODUCTS,
       },
       {
-        element: <div>balance</div>,
+        element: <Balance />,
         path: PATH.BALANCE,
       },
       {
-        element: <div>News</div>,
+        element: <News />,
         path: PATH.NEWS,
       },
       {
-        element: <div>Support</div>,
+        element: <Support />,
         path: PATH.SUPPORT,
       },
       {

@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 
-import { Sidebar } from '@/components'
 import { Header } from '@/components/layout/header'
 import { selectDeviceType } from '@/slices/app/model/appSlice'
 import { selectIsAuth } from '@/slices/auth/model/authSlice'
@@ -9,6 +8,8 @@ import { useSetDeviceType } from '@/utils/useSetDeviceType'
 import clsx from 'clsx'
 
 import s from './layout.module.scss'
+
+import { Sidebar } from './sidebar/sidebar'
 
 export const Layout = () => {
   useSetDeviceType()

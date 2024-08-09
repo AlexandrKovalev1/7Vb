@@ -1,0 +1,75 @@
+.root {
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-left: 8px;
+}
+
+.container {
+  position: relative;
+
+  .searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+
+    fill: var(--color-dark-text);
+
+    &.disabledIcon {
+    }
+  }
+}
+
+.input {
+  all: unset;
+
+  width: calc(100% - 24px);
+  padding: 7px 0 7px 24px;
+
+  font-size: var(--font-size-m);
+  color: var(--color-dark-text);
+
+  border: 3px solid var(--color-dark-text);
+  border-radius: 10px;
+
+  transition: 0.3s;
+
+  ::placeholder {
+    color: var(--color-dark-text-secondary);
+  }
+
+  &:focus-within,
+  &:active {
+    border: 3px solid var(--color-dark-accent-1);
+  }
+
+  &.login {
+    border-radius: 4px;
+  }
+}
+
+.button {
+  all: unset;
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+
+  > svg {
+    fill: var(--color-dark-text);
+    transition: 0.3s;
+
+    &:hover {
+      fill: var(--color-dark-text);
+    }
+  }
+}

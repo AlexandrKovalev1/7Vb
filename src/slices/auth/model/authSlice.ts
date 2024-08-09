@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const slice = createSlice({
   initialState: {
+    isAdmin: true,
     isAuth: true,
   },
   name: 'auth',

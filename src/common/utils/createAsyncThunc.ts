@@ -1,5 +1,5 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const createAppAsyncThunk = createAsyncThunk.withTypes<{
-	rejectValue: string | null;
-}>();
+  rejectValue: null | string
+}>()

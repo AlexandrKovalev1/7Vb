@@ -4,24 +4,33 @@
   grid-template-columns: 1fr;
   grid-template-rows: 75px 1fr;
 
+  &:not(.auth) {
+    & > * {
+      padding: 0 40px;
+    }
+  }
+
   &.auth {
     grid-template-columns: auto 4fr;
   }
 
   @media screen and (width <=768px) {
     display: block;
+    padding-top: var(--header-heigth);
   }
 }
 
 .main {
   grid-area: 2/2/3/3;
+  padding: 0 40px;
 
   &:not(.auth) {
     grid-area: 2/1/3/2;
+    padding: 0 40px;
   }
 
   &.mobile {
-    height: 100vh;
-    padding-top: 80px;
+    height: calc(100vh - var(--header-heigth));
+    padding: 0;
   }
 }

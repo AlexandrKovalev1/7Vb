@@ -1,0 +1,32 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 28px 40px 42px;
+
+  h3 {
+    align-self: self-start;
+  }
+
+  .button {
+    width: 160px;
+    height: 56px;
+    border-radius: 10px;
+  }
+}
+
+.balance_buttonsBlock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+}
+
+.inputsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

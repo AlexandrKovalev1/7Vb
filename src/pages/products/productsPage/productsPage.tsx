@@ -12,7 +12,6 @@ export const ProductsPage = () => {
       {products.map(p => (
         <ProductCard key={p.id} product={p} />
       ))}
-      {/*{products.length && <ProductCard product={products[0]} />}*/}
     </div>
   )
 }

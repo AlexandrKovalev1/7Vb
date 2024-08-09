@@ -1,0 +1,103 @@
+.label {
+  color: var(--color-dark-text);
+
+  &.labelDisabled {
+    color: var(--color-dark-text-secondary);
+  }
+
+  .icon {
+    transform: rotate(180deg);
+    fill: var(--color-dark-text);
+    transition: 0.2s;
+  }
+}
+
+.trigger {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  gap: 0 12px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: calc(100% - 64px);
+  margin-top: 9px;
+  padding: 7px 32px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-700);
+  border: 3px solid var(--color-dark-text);
+  border-radius: 10px;
+  outline: none;
+
+  &:focus-visible:not([data-disabled]) {
+    border-color: var(--color-info-700);
+    outline: 1px solid var(--color-info-700);
+  }
+
+  &[data-state='open'] {
+    border-color: var(--color-dark-accent-1);
+    border-radius: 10px;
+
+    .icon {
+      transform: rotate(360deg);
+      fill: var(--color-dark-accent-1);
+    }
+  }
+
+  &:hover:not([data-disabled]) {
+    cursor: pointer;
+    background-color: var(--color-dark-500);
+  }
+
+  &[data-disabled] {
+    cursor: initial;
+    color: var(--color-dark-300);
+    border-color: var(--color-dark-300);
+  }
+}
+
+.triggerDisabled {
+  cursor: auto;
+  border: 1px solid var(--color-dark-text-secondary);
+
+  & span {
+    color: var(--color-dark-text-secondary);
+  }
+
+  .iconDisabled {
+    transform: rotate(180deg);
+    color: var(--color-dark-text-secondary);
+    fill: var(--color-dark-text-secondary);
+  }
+}
+
+.content {
+  z-index: 1200;
+
+  width: var(--radix-select-trigger-width);
+  margin-top: 12px;
+
+  background-color: var(--color-dark-secondary);
+  border: 3px solid var(--color-dark-accent-1);
+  border-radius: 10px;
+
+  .item {
+    cursor: pointer;
+    padding: 0.37rem 32px;
+    outline: none;
+    transition: 0.2s ease-out;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-dark-accent-1);
+    }
+
+    &[data-state='checked'] {
+      color: var(--color-dark-text);
+      background-color: var(--color-dark-accent-1);
+    }
+  }
+}

@@ -8,10 +8,11 @@ type Props = {
   disabled?: boolean
   id?: string
   label?: string
+  name?: string
   onChange?: (checked: boolean) => void
 }
 
-export const Checkbox = ({ checked, disabled, id, label, onChange }: Props) => {
+export const Checkbox = ({ checked, disabled, id, label, name, onChange }: Props) => {
   return (
     <label className={`${s.label} ${disabled && s.disabled}`}>
       <CheckboxRadix.Root
@@ -20,6 +21,7 @@ export const Checkbox = ({ checked, disabled, id, label, onChange }: Props) => {
         defaultChecked
         disabled={disabled}
         id={id}
+        name={name}
         onCheckedChange={onChange}
       >
         <CheckboxRadix.Indicator className={s.checkboxIndicator}>

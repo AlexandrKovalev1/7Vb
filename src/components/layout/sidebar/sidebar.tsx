@@ -1,7 +1,8 @@
 import noPhoto from '@/assets/img/noPhoto.jpeg'
-import { Navigation } from '@/components/ui/sidebar/navigation'
 
 import s from './sidebar.module.scss'
+
+import { Navigation } from './navigation'
 
 export const Sidebar = () => {
   return (

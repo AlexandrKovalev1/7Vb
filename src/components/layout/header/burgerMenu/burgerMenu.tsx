@@ -26,7 +26,11 @@ export const BurgerMenu = () => {
         <span></span>
       </button>
 
-      {isOpen && createPortal(<BurgerMenuBody></BurgerMenuBody>, document.getElementById('root')!)}
+      {isOpen &&
+        createPortal(
+          <BurgerMenuBody callback={handleSetIsOpen} />,
+          document.getElementById('root')!
+        )}
     </div>
   )
 }

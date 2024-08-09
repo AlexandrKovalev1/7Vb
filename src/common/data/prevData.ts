@@ -1,4 +1,11 @@
+import cover4 from '@/assets/img/assasin.jpeg'
+import cover5 from '@/assets/img/atomic.jpg'
+import newsCover2 from '@/assets/img/batle.jpeg'
 import cover from '@/assets/img/cover1.jpg'
+import newsCover3 from '@/assets/img/farcry.jpeg'
+import newsCover1 from '@/assets/img/stalk (1).jpg'
+import cover6 from '@/assets/img/witcher.jpeg'
+import { NewsItemType } from '@/slices/news/news.types'
 import { Product } from '@/slices/products/products.types'
 
 export const products: Product[] = [
@@ -17,9 +24,9 @@ export const products: Product[] = [
   },
   {
     PriceInUSD: '80 usd',
-    Title: 'Counter Strike 2',
+    Title: 'Assassins creed',
     Type: 'External',
-    cover: cover,
+    cover: cover4,
     daysLeft: null,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
@@ -30,9 +37,9 @@ export const products: Product[] = [
   },
   {
     PriceInUSD: '80 usd',
-    Title: 'Counter Strike 2',
+    Title: 'Atomic Heart',
     Type: 'Individual',
-    cover: cover,
+    cover: cover5,
     daysLeft: 10,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
@@ -56,9 +63,9 @@ export const products: Product[] = [
   },
   {
     PriceInUSD: '80 usd',
-    Title: 'Counter Strike 2',
+    Title: 'Witcher',
     Type: 'Internal',
-    cover: cover,
+    cover: cover6,
     daysLeft: 10,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
@@ -82,9 +89,9 @@ export const products: Product[] = [
   },
   {
     PriceInUSD: '80 usd',
-    Title: 'Counter Strike 2',
+    Title: 'Atomic Heart',
     Type: 'Internal',
-    cover: cover,
+    cover: cover5,
     daysLeft: 10,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
@@ -115,5 +122,38 @@ export const sliderMarks = [
   {
     label: '180',
     value: 180,
+  },
+]
+
+export const news: NewsItemType[] = [
+  {
+    content:
+      " 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +\n" +
+      "      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +\n" +
+      "      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',",
+    cover: newsCover1,
+    id: '1',
+    title: 'New Major Update',
+    type: 'system',
+  },
+  {
+    content:
+      " 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +\n" +
+      "      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +\n" +
+      "      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',",
+    cover: newsCover2,
+    id: '2',
+    title: 'New Major Update',
+    type: 'system',
+  },
+  {
+    content:
+      " 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +\n" +
+      "      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +\n" +
+      "      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',",
+    cover: newsCover3,
+    id: '3',
+    title: 'New Major Update',
+    type: 'system',
   },
 ]

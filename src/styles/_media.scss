@@ -1,4 +1,4 @@
-@mixin largeDesc {
+@mixin largedesc {
   @media screen and (width > 992px) {
     @content;
   }
