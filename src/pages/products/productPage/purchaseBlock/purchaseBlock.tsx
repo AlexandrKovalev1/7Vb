@@ -29,7 +29,7 @@ export const PurchaseBlock = () => {
       />
       <span className={s.price}>Price {<b>{price}$</b>}</span>
       <div className={s.buttonsWrapper}>
-        <Button as={Link} className={s.button} to={'/'} variant={'link'}>
+        <Button as={Link} className={s.button} to={'/'} variant={'primary'}>
           Buy
         </Button>
         <Checkbox

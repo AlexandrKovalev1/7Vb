@@ -8,9 +8,10 @@ const slice = createSlice({
   name: 'auth',
   reducers: {},
   selectors: {
+    selectIsAdmin: state => state.isAdmin,
     selectIsAuth: state => state.isAuth,
   },
 })
 
 export const authReducer = slice.reducer
-export const { selectIsAuth } = slice.selectors
+export const { selectIsAdmin, selectIsAuth } = slice.selectors

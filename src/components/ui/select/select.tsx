@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 import * as SelectRadix from '@radix-ui/react-select'
 import { clsx } from 'clsx'
@@ -25,7 +25,7 @@ export type SelectPropsType = {
   value?: string
 }
 
-export const Select: FC<SelectPropsType> = ({
+export const Select = ({
   className,
   defaultValue,
   disabled,
@@ -35,7 +35,7 @@ export const Select: FC<SelectPropsType> = ({
   placeholder,
   required,
   value,
-}) => {
+}: SelectPropsType) => {
   const classes = {
     icon: clsx(s.icon, disabled && s.iconDisabled),
     item: clsx(s.item),

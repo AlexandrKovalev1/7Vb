@@ -1,0 +1,32 @@
+.table {
+  overflow: hidden;
+  border-collapse: collapse;
+
+  width: 100%;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  tr > :first-child {
+    width: 130px;
+    padding-left: 33px;
+  }
+
+  tr > :last-child {
+    padding-right: 33px;
+    text-align: end;
+  }
+}
+
+.tableHead {
+  width: 100%;
+  background-color: var(--color-dark-secondary);
+
+  & > :first-child {
+    line-height: 100px;
+  }
+
+  & > :last-child {
+    line-height: 70px;
+  }
+}

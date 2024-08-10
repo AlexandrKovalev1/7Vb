@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 
+import { useAppSelector } from '@/app/store/store'
 import { Header } from '@/components/layout/header'
 import { selectDeviceType } from '@/slices/app/model/appSlice'
-import { selectIsAuth } from '@/slices/auth/model/authSlice'
+import { selectIsAdmin, selectIsAuth } from '@/slices/auth/model/authSlice'
 import { useSetDeviceType } from '@/utils/useSetDeviceType'
 import clsx from 'clsx'
 
@@ -16,6 +17,7 @@ export const Layout = () => {
   const deviceType = useSelector(selectDeviceType)
   const isAuth = useSelector(selectIsAuth)
   const desktopMode = isAuth && deviceType === 'desktop'
+  const isAdmin = useAppSelector(selectIsAdmin)
 
   const classNames = {
     layout: clsx(s.layout, isAuth && s.auth),
@@ -25,9 +27,9 @@ export const Layout = () => {
   return (
     <div className={classNames.layout}>
       <Header isLoggedIn={isAuth} />
-      {desktopMode && <Sidebar />}
+      {desktopMode && <Sidebar isAdmin={isAdmin} />}
       <main className={classNames.main}>
-        <Outlet />
+        <Outlet context={{ isAdmin: isAdmin }} />
       </main>
     </div>
   )

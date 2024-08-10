@@ -27,7 +27,7 @@ export const ProductCard = ({ product }: Props) => {
         </div>
         {subscribeStatus !== 'None active' && <span>Days left:{daysLeft} days</span>}
       </div>
-      <Button as={Link} className={s.buttonBuy} to={`${Title}/${id}`} variant={'link'}>
+      <Button as={Link} className={s.buttonBuy} to={`${Title}/${id}`} variant={'primary'}>
         Download
       </Button>
     </Card>

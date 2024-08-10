@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
+import { Users } from '@/adminPages/users'
 import { Layout } from '@/components/layout/layout'
 import { Balance } from '@/pages/balance/balance'
 import { News } from '@/pages/news'
@@ -22,6 +23,7 @@ export const PATH = {
   RULES: '/rules',
   SETTINGS: '/settings',
   SUPPORT: '/support',
+  USERS: '/users',
 } as const
 
 //todo сделать защищенными роуты сайд бара
@@ -59,6 +61,10 @@ const router = createBrowserRouter([
       {
         element: <Balance />,
         path: PATH.BALANCE,
+      },
+      {
+        element: <Users />,
+        path: PATH.USERS,
       },
       {
         element: <News />,
