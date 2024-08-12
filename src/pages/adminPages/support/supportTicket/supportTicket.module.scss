@@ -1,0 +1,48 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 22px;
+
+  & > * {
+    width: 100%;
+    padding: 24px 35px;
+    border-radius: 10px;
+  }
+}
+
+.messagesBlock {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 100px;
+
+  width: 100%;
+}
+
+.textarea {
+  resize: none;
+
+  width: 100%;
+  min-height: 150px;
+  padding: 30px 90px 30px 30px;
+
+  background-color: var(--color-dark-primary);
+  border-radius: 10px;
+}
+
+.button {
+  position: absolute;
+  right: 51px;
+  bottom: 45px;
+
+  padding: 10px 26px;
+
+  border-radius: 10px;
+}
+
+.messageItems {
+  display: flex;
+  flex-direction: column;
+  row-gap: 45px;
+}

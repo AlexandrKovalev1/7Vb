@@ -6,7 +6,7 @@ import { Icon } from '@/components/ui/icon'
 import s from './navigation.module.scss'
 
 type Props = {
-  isAdmin?: boolean
+  isAdmin?: boolean | null
 }
 export const Navigation = ({ isAdmin }: Props) => {
   const balanceItem = (

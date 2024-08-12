@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom'
 
 import { PATH } from '@/app/router/routes'
+import { useAppSelector } from '@/app/store/store'
+import { selectIsAdmin } from '@/slices/auth/model/authSlice'
 
 import s from './burgerMenuBody.module.scss'
 
@@ -9,9 +11,7 @@ type Props = {
 }
 
 export const BurgerMenuBody = ({ callback }: Props) => {
-  const classNameHandler = ({ isActive }: { isActive: boolean }) => {
-    return isActive ? s.active : undefined
-  }
+  const isAdmin = useAppSelector(selectIsAdmin)
 
   return (
     <div className={s.wrapper}>
@@ -23,8 +23,12 @@ export const BurgerMenuBody = ({ callback }: Props) => {
             </NavLink>
           </li>
           <li className={s.listItem}>
-            <NavLink className={classNameHandler} onClick={callback} to={PATH.BALANCE}>
-              <span>Balance</span>
+            <NavLink
+              className={classNameHandler}
+              onClick={callback}
+              to={isAdmin ? PATH.USERS : PATH.BALANCE}
+            >
+              <span>{isAdmin ? 'Users' : 'Balance'}</span>
             </NavLink>
           </li>
           <li className={s.listItem}>
@@ -46,4 +50,8 @@ export const BurgerMenuBody = ({ callback }: Props) => {
       </nav>
     </div>
   )
+}
+
+const classNameHandler = ({ isActive }: { isActive: boolean }) => {
+  return isActive ? s.active : undefined
 }

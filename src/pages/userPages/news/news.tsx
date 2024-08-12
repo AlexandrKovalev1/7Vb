@@ -1,5 +1,5 @@
-import { NewsItem } from '@/pages/news/newsItem'
-import { useNews } from '@/pages/news/useNews'
+import { NewsItem } from '@/pages/userPages/news/newsItem'
+import { useNews } from '@/pages/userPages/news/useNews'
 
 import s from './news.module.scss'
 

@@ -1,4 +1,4 @@
-import { Button, Card, Table } from '@/components'
+import { Button, Card, Table } from '../../../components'
 
 export const Users = () => {
   return (

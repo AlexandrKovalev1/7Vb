@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { Card } from '@/components'
-import { useProduct } from '@/pages/products/productPage/useProduct'
+import { useProduct } from '@/pages/userPages/products/productPage/useProduct'
 
 import s from './productPage.module.scss'
 

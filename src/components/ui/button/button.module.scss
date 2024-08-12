@@ -88,9 +88,11 @@
 
   &:hover {
     color: var(--color-dark-accent-1);
+    background-color: unset;
   }
 
   &:active {
     color: var(--color-dark-accent-1);
+    background-color: unset;
   }
 }

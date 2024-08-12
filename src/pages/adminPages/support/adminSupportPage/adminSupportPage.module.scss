@@ -1,0 +1,10 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 35px;
+}
+
+.descriptionPage {
+  padding: 40px 30px;
+  border-radius: 10px;
+}

@@ -1,0 +1,21 @@
+.itemDescription {
+  overflow: hidden;
+
+  max-width: 250px;
+  padding-right: 40px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inprocess {
+  color: #faff01;
+}
+
+.successed {
+  color: var(--color-dark-accent-1);
+}
+
+.failed {
+  color: red;
+}

@@ -1,19 +1,24 @@
-import { useSelector } from 'react-redux'
-import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Navigate, RouteObject, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import { Users } from '@/adminPages/users'
+import { useAppSelector } from '@/app/store/store'
+import { Login } from '@/components/auth/login/login'
+import { SignUp } from '@/components/auth/signUp/signUp'
 import { Layout } from '@/components/layout/layout'
-import { Balance } from '@/pages/balance/balance'
-import { News } from '@/pages/news'
-import { Products } from '@/pages/products'
-import { ProductPage } from '@/pages/products/productPage'
-import { ProductsPage } from '@/pages/products/productsPage'
-import { Support } from '@/pages/support/support'
-import { selectIsAuth } from '@/slices/auth/model/authSlice'
+import { AdminProducts } from '@/pages/adminPages/products'
+import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
+import { Users } from '@/pages/adminPages/users'
+import { Balance } from '@/pages/userPages/balance/balance'
+import { News } from '@/pages/userPages/news'
+import { Products } from '@/pages/userPages/products'
+import { ProductPage } from '@/pages/userPages/products/productPage'
+import { ProductsPage } from '@/pages/userPages/products/productsPage'
+import { Support } from '@/pages/userPages/support/support'
+import { selectIsAdmin, selectIsAuth } from '@/slices/auth/model/authSlice'
 
 export const PATH = {
   BALANCE: '/balance',
   FAQ: '/FAQ',
+  HOME: '/home',
   LANGUAGE: '/language',
   LOGIN: '/login',
   NEWS: '/news',
@@ -22,28 +27,79 @@ export const PATH = {
   ROOT: '/',
   RULES: '/rules',
   SETTINGS: '/settings',
+  SIGN_UP: '/sign_up',
   SUPPORT: '/support',
+  SUPPORT_TICKET: ':id',
   USERS: '/users',
 } as const
 
 //todo сделать защищенными роуты сайд бара
 const DistributorOfPath = () => {
-  const isAuth = useSelector(selectIsAuth)
+  const isAuth = useAppSelector(selectIsAuth)
 
-  return isAuth ? <Navigate to={PATH.PRODUCTS} /> : <div>home</div>
+  return isAuth ? <Navigate to={PATH.PRODUCTS} /> : <Login />
 }
 
-const router = createBrowserRouter([
+const rootRoutes: RouteObject[] = [
+  {
+    element: <Navigate to={PATH.ROOT} />,
+    path: '/7Vb/',
+  },
+  {
+    element: <DistributorOfPath />,
+    path: PATH.ROOT,
+  },
+]
+
+const adminRouter = createBrowserRouter([
   {
     children: [
+      ...rootRoutes,
       {
-        element: <Navigate to={PATH.ROOT} />,
-        path: '/7Vb/',
+        element: <Users />,
+        path: PATH.USERS,
       },
       {
-        element: <DistributorOfPath />,
-        path: PATH.ROOT,
+        element: <News />,
+        path: PATH.NEWS,
       },
+      {
+        children: [
+          {
+            element: <AdminSupportPage />,
+            path: PATH.SUPPORT,
+          },
+          {
+            element: <SupportTicket />,
+            path: PATH.SUPPORT_TICKET,
+          },
+        ],
+        element: <AdminSupport />,
+        path: PATH.SUPPORT,
+      },
+      {
+        element: <AdminProducts />,
+        path: PATH.PRODUCTS,
+      },
+      {
+        element: <div>Settings</div>,
+        path: PATH.SETTINGS,
+      },
+      {
+        element: <Login />,
+        path: PATH.LOGIN,
+      },
+    ],
+    element: <Layout />,
+    errorElement: <Navigate to={'/error'} />,
+    path: PATH.ROOT,
+  },
+])
+
+const userRouter = createBrowserRouter([
+  {
+    children: [
+      ...rootRoutes,
       {
         children: [
           {
@@ -63,10 +119,6 @@ const router = createBrowserRouter([
         path: PATH.BALANCE,
       },
       {
-        element: <Users />,
-        path: PATH.USERS,
-      },
-      {
         element: <News />,
         path: PATH.NEWS,
       },
@@ -78,6 +130,47 @@ const router = createBrowserRouter([
         element: <div>Settings</div>,
         path: PATH.SETTINGS,
       },
+      {
+        element: <Login />,
+        path: PATH.LOGIN,
+      },
+    ],
+    element: <Layout />,
+    errorElement: <Navigate to={'/error'} />,
+    path: PATH.ROOT,
+  },
+])
+const publicRouter = createBrowserRouter([
+  {
+    children: [
+      {
+        element: <Navigate to={PATH.ROOT} />,
+        path: '/*',
+      },
+      {
+        element: <SignUp />,
+        path: PATH.SIGN_UP,
+      },
+      {
+        element: <Login />,
+        path: PATH.LOGIN,
+      },
+      {
+        element: <Navigate to={PATH.HOME} />,
+        path: '/7Vb/',
+      },
+      {
+        element: <Navigate to={PATH.HOME} />,
+        path: PATH.ROOT,
+      },
+      {
+        element: <div>Home</div>,
+        path: PATH.HOME,
+      },
+      {
+        element: <div>FAQ</div>,
+        path: PATH.FAQ,
+      },
     ],
     element: <Layout />,
     errorElement: <Navigate to={'/error'} />,
@@ -86,5 +179,12 @@ const router = createBrowserRouter([
 ])
 
 export const Router = () => {
-  return <RouterProvider router={router} />
+  const isAdmin = useAppSelector(selectIsAdmin)
+  const isAuth = useAppSelector(selectIsAuth)
+
+  if (isAuth) {
+    return <RouterProvider router={isAdmin ? adminRouter : userRouter} />
+  }
+
+  return <RouterProvider router={publicRouter} />
 }

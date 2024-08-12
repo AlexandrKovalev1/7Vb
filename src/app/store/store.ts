@@ -4,6 +4,7 @@ import { appReducer } from '@/slices/app/model/appSlice'
 import { authReducer } from '@/slices/auth/model/authSlice'
 import { newsReducer } from '@/slices/news/model/newsSlise'
 import { productsReducer } from '@/slices/products/model/productsSlice'
+import { supportReducer } from '@/slices/supportMessages/model/supportSlice'
 import { configureStore } from '@reduxjs/toolkit'
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
     auth: authReducer,
     news: newsReducer,
     products: productsReducer,
+    supportMessages: supportReducer,
   },
 })
 

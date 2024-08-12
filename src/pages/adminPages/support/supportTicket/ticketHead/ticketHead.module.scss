@@ -1,0 +1,17 @@
+.ticketInfo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.inprocess {
+  color: #faff01;
+}
+
+.successed {
+  color: var(--color-dark-accent-1);
+}
+
+.failed {
+  color: red;
+}

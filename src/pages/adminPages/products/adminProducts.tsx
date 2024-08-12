@@ -1,10 +1,18 @@
-import { useAppSelector } from '@/app/store/store'
+import { useEffect } from 'react'
+
+import { useAppDispatch, useAppSelector } from '@/app/store/store'
 import { Button, Card, Table } from '@/components'
-import { selectProducts } from '@/slices/products/model/productsSlice'
+import { productsThunks, selectProducts } from '@/slices/products/model/productsSlice'
 import { Product } from '@/slices/products/products.types'
 
 export const AdminProducts = () => {
   const products = useAppSelector(selectProducts)
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(productsThunks.fetchProducts())
+  }, [])
 
   return (
     <Table buttonTitle={'Add product'} heading={'Products'} params={['Id', 'Name', 'Type', '']}>

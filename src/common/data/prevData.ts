@@ -7,6 +7,7 @@ import newsCover1 from '@/assets/img/stalk (1).jpg'
 import cover6 from '@/assets/img/witcher.jpeg'
 import { NewsItemType } from '@/slices/news/news.types'
 import { Product } from '@/slices/products/products.types'
+import { SupportMessages } from '@/slices/supportMessages/supportMessages.types'
 
 export const products: Product[] = [
   {
@@ -155,5 +156,50 @@ export const news: NewsItemType[] = [
     id: '3',
     title: 'New Major Update',
     type: 'system',
+  },
+]
+
+export const supportMessages: SupportMessages = [
+  {
+    id: '1',
+    messages: [
+      {
+        content: 'I Have some problem in my launcher not started and i have some bsod.',
+        date: '11:22 | 4 Nov 2023',
+        id: '1',
+        senderId: '1',
+      },
+      {
+        content: 'You need to...',
+        date: '11:22 | 4 Nov 2023',
+        id: '2',
+        senderId: '164850',
+      },
+      {
+        content: 'I Have some problem in my launcher not started and i have some bsod.',
+        date: '11:22 | 4 Nov 2023',
+        id: '3',
+        senderId: '1',
+      },
+    ],
+    status: 'In Process',
+  },
+  {
+    id: '2',
+    messages: [
+      {
+        content: 'Aaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        date: '11:22 | 4 Nov 2023',
+        id: '1',
+        senderId: '2',
+      },
+      {
+        content: 'You need to...',
+        date: '11:22 | 4 Nov 2023',
+        id: '2',
+        senderId: '164850',
+      },
+    ],
+    status: 'Successed',
   },
 ]

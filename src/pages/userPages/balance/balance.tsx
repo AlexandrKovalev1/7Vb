@@ -1,7 +1,7 @@
 import { Card } from '@/components'
-import { ActivateForm } from '@/pages/balance/forms/activateForm/activateForm'
-import { BalanceForm } from '@/pages/balance/forms/balanceForm/balanceForm'
-import { TransferForm } from '@/pages/balance/forms/transferForm/transferForm'
+import { ActivateForm } from '@/pages/userPages/balance/forms/activateForm/activateForm'
+import { BalanceForm } from '@/pages/userPages/balance/forms/balanceForm/balanceForm'
+import { TransferForm } from '@/pages/userPages/balance/forms/transferForm/transferForm'
 
 import s from './balance.module.scss'
 

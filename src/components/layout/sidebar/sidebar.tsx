@@ -5,7 +5,7 @@ import s from './sidebar.module.scss'
 
 import { Navigation } from './navigation'
 type Props = {
-  isAdmin?: boolean
+  isAdmin?: boolean | null
   userData?: any
 }
 
