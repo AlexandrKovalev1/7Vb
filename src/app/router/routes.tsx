@@ -7,6 +7,7 @@ import { Layout } from '@/components/layout/layout'
 import { AdminProducts } from '@/pages/adminPages/products'
 import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
 import { Users } from '@/pages/adminPages/users'
+import { Home } from '@/pages/publicPages/home/home'
 import { Balance } from '@/pages/userPages/balance/balance'
 import { News } from '@/pages/userPages/news'
 import { Products } from '@/pages/userPages/products'
@@ -164,7 +165,7 @@ const publicRouter = createBrowserRouter([
         path: PATH.ROOT,
       },
       {
-        element: <div>Home</div>,
+        element: <Home />,
         path: PATH.HOME,
       },
       {
