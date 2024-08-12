@@ -34,7 +34,7 @@ export const Support = () => {
         <Select label={'Where Problem'} options={problemOptions} />
       </Card>
       <Card className={s.problemsBlock}>
-        <div className={s.problemsField}></div>
+        <textarea className={s.problemsField} />
         <Button className={s.button}>Send</Button>
       </Card>
     </div>

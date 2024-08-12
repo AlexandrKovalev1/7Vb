@@ -41,6 +41,6 @@
 
   &.mobile {
     min-height: calc(100vh - var(--header-heigth));
-    padding: 0;
+    padding: 0 20px;
   }
 }
