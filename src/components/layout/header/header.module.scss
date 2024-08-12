@@ -4,7 +4,7 @@
 
   grid-area: 1/1/2/2;
 
-  height: 75px;
+  height: var(--header-not_auth-heigth);
 
   font-size: var(--font-size-s);
 
@@ -12,8 +12,12 @@
 
   &.logged {
     top: 0;
+
     grid-area: 1/2/2/3;
+
+    height: var(--header-heigth);
     padding: 0 40px;
+
     background-color: var(--color-dark-primary);
   }
 
