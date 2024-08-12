@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom'
 
 import { PATH } from '@/app/router/routes'
-import { useAppSelector } from '@/app/store/store'
-import { selectIsAdmin } from '@/slices/auth/model/authSlice'
+import { useAppDispatch, useAppSelector } from '@/app/store/store'
+import { Button } from '@/components/ui'
+import { logOut, selectIsAdmin } from '@/slices/auth/model/authSlice'
 
 import s from './burgerMenuBody.module.scss'
 
@@ -12,6 +13,11 @@ type Props = {
 
 export const BurgerMenuBody = ({ callback }: Props) => {
   const isAdmin = useAppSelector(selectIsAdmin)
+  const dispatch = useAppDispatch()
+
+  const onLogOutHandler = () => {
+    dispatch(logOut())
+  }
 
   return (
     <div className={s.wrapper}>
@@ -48,6 +54,11 @@ export const BurgerMenuBody = ({ callback }: Props) => {
           </li>
         </ul>
       </nav>
+      <span className={s.logOutWrapper}>
+        <Button onClick={onLogOutHandler} variant={'link'}>
+          Log out
+        </Button>
+      </span>
     </div>
   )
 }
