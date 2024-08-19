@@ -64,14 +64,14 @@
 
   background-color: var(--color-dark-accent-1);
   border-radius: 10px;
-  box-shadow: 0 4px 18px rgb(23 189 13 / 35%);
+  box-shadow: 0 4px 18px rgb(234 79 22 / 35%);
 }
 
 .primary {
   composes: button;
   color: var(--color-text);
   background-color: var(--color-dark-accent-1);
-  box-shadow: 0 4px 18px rgb(23 189 13 / 35%);
+  box-shadow: 0 4px 18px rgb(234 79 22 / 35%);
 
   //&:hover:enabled {
   //  background-color: var(--color-dark-accent-2);

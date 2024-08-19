@@ -1,0 +1,27 @@
+.wrapper {
+  padding-top: 72px;
+}
+
+.card {
+  padding: 26px 42px;
+}
+
+.heading {
+  margin-bottom: 14px;
+  font-size: var(--font-size-l);
+  color: var(--color-dark-accent-1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  width: 100%;
+
+  font-size: var(--font-size-m);
+
+  & span {
+    text-indent: 30px;
+  }
+}

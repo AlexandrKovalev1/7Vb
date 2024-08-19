@@ -1,9 +1,8 @@
-import { NavLink } from 'react-router-dom'
-
-import { PATH } from '@/app/router/routes'
-import { useAppDispatch, useAppSelector } from '@/app/store/store'
-import { Button } from '@/components/ui'
-import { logOut, selectIsAdmin } from '@/slices/auth/model/authSlice'
+import { useAppSelector } from '@/app/store/store'
+import { IsAuthMenu } from '@/components/layout/header/burgerMenu/burgerMenuBody/isAuthMenu/isAuthMenu'
+import { NotAuthMenu } from '@/components/layout/header/burgerMenu/burgerMenuBody/notAuthMenu/notAuthMenu'
+import { LoginOrLogOut } from '@/components/layout/header/loginOrLogOut'
+import { selectIsAuth } from '@/slices/auth/model/authSlice'
 
 import s from './burgerMenuBody.module.scss'
 
@@ -12,52 +11,21 @@ type Props = {
 }
 
 export const BurgerMenuBody = ({ callback }: Props) => {
-  const isAdmin = useAppSelector(selectIsAdmin)
-  const dispatch = useAppDispatch()
-
-  const onLogOutHandler = () => {
-    dispatch(logOut())
-  }
+  const isAuth = useAppSelector(selectIsAuth)
 
   return (
-    <div className={s.wrapper}>
+    <div className={`${s.wrapper} ${!isAuth && s.notAuth}`}>
       <nav className={s.nav}>
         <ul className={s.list}>
-          <li className={s.listItem}>
-            <NavLink className={classNameHandler} onClick={callback} to={PATH.PRODUCTS}>
-              <span>Products</span>
-            </NavLink>
-          </li>
-          <li className={s.listItem}>
-            <NavLink
-              className={classNameHandler}
-              onClick={callback}
-              to={isAdmin ? PATH.USERS : PATH.BALANCE}
-            >
-              <span>{isAdmin ? 'Users' : 'Balance'}</span>
-            </NavLink>
-          </li>
-          <li className={s.listItem}>
-            <NavLink className={classNameHandler} onClick={callback} to={PATH.NEWS}>
-              <span>News</span>
-            </NavLink>
-          </li>
-          <li className={s.listItem}>
-            <NavLink className={classNameHandler} onClick={callback} to={PATH.SUPPORT}>
-              <span>Support</span>
-            </NavLink>
-          </li>
-          <li className={s.listItem}>
-            <NavLink className={classNameHandler} onClick={callback} to={PATH.SETTINGS}>
-              <span>Settings</span>
-            </NavLink>
-          </li>
+          {isAuth ? (
+            <IsAuthMenu callback={callback} classNameHandler={classNameHandler} />
+          ) : (
+            <NotAuthMenu callback={callback} classNameHandler={classNameHandler} />
+          )}
         </ul>
       </nav>
-      <span className={s.logOutWrapper}>
-        <Button onClick={onLogOutHandler} variant={'link'}>
-          Log out
-        </Button>
+      <span className={s.loginBlock} onClick={callback}>
+        <LoginOrLogOut />
       </span>
     </div>
   )

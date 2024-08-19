@@ -1,12 +1,12 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  row-gap: 80px;
   align-items: center;
-  justify-content: center;
 
   width: 100%;
+  max-width: 1400px;
   height: 100%;
+  margin: 0 auto;
 }
 
 .heading {
@@ -17,9 +17,14 @@
 .description {
 }
 
+.headingBlock {
+  align-self: flex-start;
+  padding: 80px 0;
+}
+
 .prevCardsBlock {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 315px));
+  grid-template-columns: repeat(auto-fill, minmax(280px, auto));
   gap: 37px;
   align-items: center;
   justify-content: center;

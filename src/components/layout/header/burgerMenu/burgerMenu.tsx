@@ -21,7 +21,7 @@ export const BurgerMenu = () => {
   }
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <button className={`${s.burgerBtn} ${isOpen && s.menuOpen}`} onClick={handleSetIsOpen}>
         <span></span>
       </button>

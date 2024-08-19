@@ -1,0 +1,36 @@
+.wrapper {
+  padding-top: 72px;
+}
+
+.card {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 22px;
+
+  padding: 26px 42px;
+}
+
+.heading {
+  font-size: var(--font-size-l);
+  color: var(--color-dark-accent-1);
+}
+
+.faqItemWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 22px;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 110px;
+  padding: 33px;
+
+  background-color: var(--color-dark-primary);
+  border-radius: 10px;
+}
+
+.faqItemHead {
+  display: flex;
+}

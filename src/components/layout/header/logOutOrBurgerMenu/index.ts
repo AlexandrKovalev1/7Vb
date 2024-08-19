@@ -1,1 +1,1 @@
-export * from './logOutOrBurgerMenu'
+export * from './navBarOrBurgerMenu'

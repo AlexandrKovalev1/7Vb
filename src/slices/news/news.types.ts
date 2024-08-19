@@ -3,5 +3,5 @@ export type NewsItemType = {
   cover: string
   id: string
   title: string
-  type: 'system'
+  type: 'System'
 }

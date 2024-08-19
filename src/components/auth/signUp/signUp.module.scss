@@ -7,15 +7,13 @@
   height: 100vh;
 }
 
-.loginBlock {
+.signInBlock {
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: 100%;
   max-width: 500px;
-  height: 100%;
-  max-height: 550px;
 }
 
 .container {
@@ -27,8 +25,7 @@
   width: 100%;
   max-width: 395px;
   height: 100%;
-  max-height: 465px;
-  padding: 0 30px;
+  padding: 50px 30px;
 }
 
 .inputsBlock {
@@ -39,6 +36,7 @@
 }
 
 .button {
+  margin-bottom: 40px;
   padding: 16px 65px;
 }
 

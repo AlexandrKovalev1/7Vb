@@ -12,7 +12,7 @@ export const NewsItem = ({ content, cover, title, type }: Props) => {
       <div className={s.content}>
         <div>
           <h2>{title}</h2>
-          <span>{type}</span>
+          <span className={s.type}>{type}</span>
         </div>
         <p>{content}</p>
         <Button className={s.button}>Read more</Button>

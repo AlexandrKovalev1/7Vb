@@ -29,7 +29,9 @@ export const Layout = () => {
       <Header isLoggedIn={!!isAuth} />
       {desktopMode && <Sidebar isAdmin={isAdmin} />}
       <main className={classNames.main}>
-        <Outlet context={{ isAdmin: isAdmin }} />
+        <div className={s.container}>
+          <Outlet context={{ isAdmin: isAdmin }} />
+        </div>
       </main>
     </div>
   )

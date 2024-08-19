@@ -7,7 +7,9 @@ import { Layout } from '@/components/layout/layout'
 import { AdminProducts } from '@/pages/adminPages/products'
 import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
 import { Users } from '@/pages/adminPages/users'
+import { Faq } from '@/pages/publicPages/faq'
 import { Home } from '@/pages/publicPages/home/home'
+import { Rules } from '@/pages/publicPages/rules'
 import { Balance } from '@/pages/userPages/balance/balance'
 import { News } from '@/pages/userPages/news'
 import { Products } from '@/pages/userPages/products'
@@ -34,7 +36,6 @@ export const PATH = {
   USERS: '/users',
 } as const
 
-//todo сделать защищенными роуты сайд бара
 const DistributorOfPath = () => {
   const isAuth = useAppSelector(selectIsAuth)
 
@@ -141,6 +142,8 @@ const userRouter = createBrowserRouter([
     path: PATH.ROOT,
   },
 ])
+
+// /* --- мешает переходу в error404после вылогинизации
 const publicRouter = createBrowserRouter([
   {
     children: [
@@ -169,8 +172,12 @@ const publicRouter = createBrowserRouter([
         path: PATH.HOME,
       },
       {
-        element: <div>FAQ</div>,
+        element: <Faq />,
         path: PATH.FAQ,
+      },
+      {
+        element: <Rules />,
+        path: PATH.RULES,
       },
     ],
     element: <Layout />,

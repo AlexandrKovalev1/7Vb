@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from '@/app/store/store'
-import { Button, Card, Table } from '@/components'
+import { Table } from '@/components'
+import { AdminProductListItem } from '@/pages/adminPages/products/adminProductListItem'
 import { productsThunks, selectProducts } from '@/slices/products/model/productsSlice'
-import { Product } from '@/slices/products/products.types'
 
 export const AdminProducts = () => {
   const products = useAppSelector(selectProducts)
@@ -17,7 +17,7 @@ export const AdminProducts = () => {
   return (
     <Table buttonTitle={'Add product'} heading={'Products'} params={['Id', 'Name', 'Type', '']}>
       {products?.map(product => (
-        <AdminProductItem
+        <AdminProductListItem
           Title={product.Title}
           Type={product.Type}
           id={product.id}
@@ -25,23 +25,5 @@ export const AdminProducts = () => {
         />
       ))}
     </Table>
-  )
-}
-
-type AdminProductItemProps = Pick<Product, 'Title' | 'Type' | 'id'>
-
-const AdminProductItem = ({ Title, Type, id }: AdminProductItemProps) => {
-  return (
-    <Card
-      as={'tr'}
-      style={{ borderTop: '10px solid var(--color-dark-primary)', lineHeight: '80px' }}
-    >
-      <td>{id}</td>
-      <td>{Title}</td>
-      <td style={{ color: 'var(--color-dark-accent-1)' }}>{Type}</td>
-      <td>
-        <Button variant={'table'}>Edit</Button>
-      </td>
-    </Card>
   )
 }

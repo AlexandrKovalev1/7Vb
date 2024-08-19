@@ -8,7 +8,9 @@ export const News = () => {
 
   return (
     <div className={s.news}>
-      {news?.map(n => <NewsItem content={n.content} cover={n.cover} key={n.id} title={n.title} />)}
+      {news?.map(n => (
+        <NewsItem content={n.content} cover={n.cover} key={n.id} title={n.title} type={n.type} />
+      ))}
     </div>
   )
 }

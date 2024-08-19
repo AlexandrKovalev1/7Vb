@@ -135,7 +135,7 @@ export const news: NewsItemType[] = [
     cover: newsCover1,
     id: '1',
     title: 'New Major Update',
-    type: 'system',
+    type: 'System',
   },
   {
     content:
@@ -145,7 +145,7 @@ export const news: NewsItemType[] = [
     cover: newsCover2,
     id: '2',
     title: 'New Major Update',
-    type: 'system',
+    type: 'System',
   },
   {
     content:
@@ -155,7 +155,7 @@ export const news: NewsItemType[] = [
     cover: newsCover3,
     id: '3',
     title: 'New Major Update',
-    type: 'system',
+    type: 'System',
   },
 ]
 

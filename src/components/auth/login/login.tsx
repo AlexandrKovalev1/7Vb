@@ -14,7 +14,7 @@ export const Login = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      login: '',
       password: '',
     },
     onSubmit: values => {
@@ -34,10 +34,10 @@ export const Login = () => {
           <div className={s.inputsBlock}>
             <TextField
               label={'Login'}
-              name={'email'}
+              name={'login'}
               onChange={formik.handleChange}
               placeholder={'Enter login'}
-              value={formik.values.email}
+              value={formik.values.login}
               variant={'login'}
             />
             <TextField
