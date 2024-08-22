@@ -20,7 +20,6 @@
 .faqItemWrapper {
   display: flex;
   flex-direction: column;
-  row-gap: 22px;
   justify-content: center;
 
   width: 100%;
@@ -33,4 +32,16 @@
 
 .faqItemHead {
   display: flex;
+}
+
+.content {
+  height: 0;
+  opacity: 0;
+  transition: 3s;
+
+  &.visible {
+    height: 100%;
+    opacity: 1;
+    transition: 3s;
+  }
 }

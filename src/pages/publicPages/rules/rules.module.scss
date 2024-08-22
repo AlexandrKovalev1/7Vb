@@ -13,15 +13,10 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-
   width: 100%;
-
   font-size: var(--font-size-m);
+}
 
-  & span {
-    text-indent: 30px;
-  }
+.link {
+  color: var(--color-dark-accent-1);
 }
