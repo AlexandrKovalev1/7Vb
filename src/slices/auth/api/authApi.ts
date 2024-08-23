@@ -1,6 +1,8 @@
+import { instance } from '@/services/api/api'
+
 export type AuthData = {
-  login: string
   password: string
+  username: string
 }
 
 export type LoginParams = {
@@ -8,15 +10,26 @@ export type LoginParams = {
   isAdmin?: boolean
 }
 
+export type SignUpValues = {
+  confirmPassword: string
+  email: string
+  password: string
+  username: string
+}
+export type RegisterResponse = {
+  message: string
+  status: 'error' | 'success'
+}
+
 export const authApi = {
   getIsAuth: (auth: AuthData) => {
     return new Promise<LoginParams>((resolve, reject) => {
-      if (auth.login === 'admin' && auth.password === 'admin') {
+      if (auth.username === 'admin' && auth.password === 'admin') {
         return resolve({
           id: '164850',
           isAdmin: true,
         })
-      } else if (auth.login === 'user' && auth.password === 'user') {
+      } else if (auth.username === 'user' && auth.password === 'user') {
         return resolve({
           id: '777',
         })
@@ -27,5 +40,8 @@ export const authApi = {
   },
   logOut: () => {
     return Promise.resolve()
+  },
+  register: (data: SignUpValues) => {
+    return instance.post<RegisterResponse>('users/register', data)
   },
 }

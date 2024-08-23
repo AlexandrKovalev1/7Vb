@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom'
 import { PATH } from '@/app/router/routes'
 import { useAppDispatch, useAppSelector } from '@/app/store/store'
 import { Button, Card, TextField } from '@/components'
+import { showErrorMessage } from '@/slices/auth/lib/showErrorMessage'
+import { signInValidate } from '@/slices/auth/lib/signInValidate'
 import { login, selectIsAuth } from '@/slices/auth/model/authSlice'
 import { useFormik } from 'formik'
 
@@ -14,12 +16,13 @@ export const Login = () => {
 
   const formik = useFormik({
     initialValues: {
-      login: '',
       password: '',
+      username: '',
     },
     onSubmit: values => {
       dispatch(login(values))
     },
+    validate: signInValidate,
   })
 
   if (isAuth) {
@@ -34,20 +37,18 @@ export const Login = () => {
           <div className={s.inputsBlock}>
             <TextField
               label={'Login'}
-              name={'login'}
-              onChange={formik.handleChange}
               placeholder={'Enter login'}
-              value={formik.values.login}
               variant={'login'}
+              {...formik.getFieldProps('username')}
+              errorMessage={showErrorMessage(formik, 'username')}
             />
             <TextField
               label={'Password'}
-              name={'password'}
-              onChange={formik.handleChange}
               placeholder={'Enter password'}
               type={'password'}
-              value={formik.values.password}
               variant={'login'}
+              {...formik.getFieldProps('password')}
+              errorMessage={showErrorMessage(formik, 'password')}
             />
             <Button className={s.button}>Log in</Button>
           </div>

@@ -1,5 +1,5 @@
 import { createAppSlice } from '@/common/utils/createAppSilce'
-import { AuthData, authApi } from '@/slices/auth/api/authApi'
+import { AuthData, SignUpValues, authApi } from '@/slices/auth/api/authApi'
 
 const slice = createAppSlice({
   initialState: {
@@ -54,6 +54,13 @@ const slice = createAppSlice({
         },
       }
     ),
+    register: create.asyncThunk<{}, SignUpValues>(async (data: SignUpValues) => {
+      const res = await authApi.register(data)
+
+      console.log(res)
+
+      return {}
+    }, {}),
   }),
 
   selectors: {
@@ -65,4 +72,4 @@ const slice = createAppSlice({
 
 export const authReducer = slice.reducer
 export const { selectIsAdmin, selectIsAuth, selectUserId } = slice.selectors
-export const { logOut, login } = slice.actions
+export const { logOut, login, register } = slice.actions

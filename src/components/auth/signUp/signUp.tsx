@@ -1,22 +1,31 @@
 import { Link } from 'react-router-dom'
 
 import { PATH } from '@/app/router/routes'
+import { useAppDispatch } from '@/app/store/store'
 import { Button, Card, TextField } from '@/components'
+import { showErrorMessage } from '@/slices/auth/lib/showErrorMessage'
+import { signUpValidate } from '@/slices/auth/lib/signUpValidate'
+import { register } from '@/slices/auth/model/authSlice'
 import { useFormik } from 'formik'
 
 import s from './signUp.module.scss'
 
 export const SignUp = () => {
+  const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
       confirmPassword: '',
       email: '',
-      login: '',
       password: '',
+      username: '',
     },
     onSubmit: values => {
-      console.log(values)
+      dispatch(register(values))
+        .unwrap()
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
     },
+    validate: signUpValidate,
   })
 
   return (
@@ -27,41 +36,40 @@ export const SignUp = () => {
           <div className={s.inputsBlock}>
             <TextField
               autoComplete={'off'}
+              errorMessage={showErrorMessage(formik, 'username')}
               label={'Login'}
-              name={'login'}
-              onChange={formik.handleChange}
               placeholder={'Enter login'}
-              value={formik.values.login}
               variant={'login'}
+              {...formik.getFieldProps('username')}
             />
+
             <TextField
               autoComplete={'off'}
+              errorMessage={showErrorMessage(formik, 'password')}
               label={'Password'}
-              name={'password'}
-              onChange={formik.handleChange}
               placeholder={'Enter password'}
-              value={formik.values.password}
               variant={'login'}
+              {...formik.getFieldProps('password')}
             />
             <TextField
               autoComplete={'off'}
+              errorMessage={showErrorMessage(formik, 'confirmPassword')}
               label={'Confirm password'}
-              name={'confirmPassword'}
-              onChange={formik.handleChange}
               placeholder={'Enter password again'}
-              value={formik.values.confirmPassword}
               variant={'login'}
+              {...formik.getFieldProps('confirmPassword')}
             />
             <TextField
               autoComplete={'off'}
+              errorMessage={showErrorMessage(formik, 'email')}
               label={'Email'}
-              name={'email'}
-              onChange={formik.handleChange}
               placeholder={'Enter email'}
-              value={formik.values.email}
               variant={'login'}
+              {...formik.getFieldProps('email')}
             />
-            <Button className={s.button}>Sign Up</Button>
+            <Button className={s.button} disabled={!!Object.keys(formik.errors).length}>
+              Sign Up
+            </Button>
           </div>
           <small>
             Have an account?{' '}

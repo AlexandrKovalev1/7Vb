@@ -26,6 +26,8 @@
 .input {
   all: unset;
 
+  position: relative;
+
   width: calc(100% - 24px);
   padding: 7px 0 7px 24px;
 
@@ -48,6 +50,14 @@
 
   &.login {
     border-radius: 4px;
+  }
+
+  &.error {
+    border-color: var(--color-error);
+  }
+
+  &.error::placeholder {
+    color: var(--color-error);
   }
 }
 
@@ -72,4 +82,11 @@
       fill: var(--color-dark-text);
     }
   }
+}
+
+.errorMessage {
+  position: absolute;
+  display: inline-block;
+  padding: 5px 0 0 10px;
+  color: var(--color-error);
 }
