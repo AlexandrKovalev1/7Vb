@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/store/store'
+import { useSetDeviceType } from '@/common/utils/useSetDeviceType'
 import { Toast } from '@/components'
 import { Header } from '@/components/layout/header'
 import { selectDeviceType } from '@/slices/app/model/appSlice'
 import { me, selectIsAdmin, selectIsAuth } from '@/slices/auth/model/authSlice'
-import { useSetDeviceType } from '@/utils/useSetDeviceType'
 import clsx from 'clsx'
 
 import 'react-toastify/dist/ReactToastify.css'
