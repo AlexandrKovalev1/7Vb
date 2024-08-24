@@ -1,4 +1,10 @@
-import { Navigate, RouteObject, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import {
+  Navigate,
+  Outlet,
+  RouteObject,
+  RouterProvider,
+  createBrowserRouter,
+} from 'react-router-dom'
 
 import { useAppSelector } from '@/app/store/store'
 import { Login } from '@/components/auth/login/login'
@@ -39,7 +45,51 @@ export const PATH = {
 const DistributorOfPath = () => {
   const isAuth = useAppSelector(selectIsAuth)
 
-  return isAuth ? <Navigate to={PATH.PRODUCTS} /> : <Login />
+  return isAuth ? <Navigate to={PATH.PRODUCTS} /> : <Home />
+}
+
+const protectedRoutes: RouteObject[] = [
+  {
+    path: PATH.USERS,
+  },
+  { path: PATH.BALANCE },
+  {
+    path: PATH.NEWS,
+  },
+  {
+    children: [
+      {
+        path: PATH.SUPPORT,
+      },
+      {
+        path: PATH.SUPPORT_TICKET,
+      },
+    ],
+    path: PATH.SUPPORT,
+  },
+  {
+    children: [
+      {
+        path: PATH.PRODUCTS,
+      },
+      {
+        path: PATH.PRODUCT_PAGE,
+      },
+    ],
+    path: PATH.PRODUCTS,
+  },
+  {
+    path: PATH.SETTINGS,
+  },
+  {
+    path: PATH.LOGIN,
+  },
+]
+
+const ProtectedRoutes = () => {
+  const isAuth = useAppSelector(selectIsAuth)
+
+  return isAuth ? <Outlet /> : <Navigate to={PATH.LOGIN} />
 }
 
 const rootRoutes: RouteObject[] = [
@@ -152,8 +202,8 @@ const publicRouter = createBrowserRouter([
   {
     children: [
       {
-        element: <Navigate to={PATH.ROOT} />,
-        path: '/*',
+        element: <DistributorOfPath />,
+        path: PATH.ROOT,
       },
       {
         element: <SignUp />,
@@ -164,12 +214,8 @@ const publicRouter = createBrowserRouter([
         path: PATH.LOGIN,
       },
       {
-        element: <Navigate to={PATH.HOME} />,
+        element: <Navigate to={PATH.ROOT} />,
         path: '/7Vb/',
-      },
-      {
-        element: <Navigate to={PATH.HOME} />,
-        path: PATH.ROOT,
       },
       {
         element: <Home />,
@@ -182,6 +228,10 @@ const publicRouter = createBrowserRouter([
       {
         element: <Rules />,
         path: PATH.RULES,
+      },
+      {
+        children: protectedRoutes,
+        element: <ProtectedRoutes />,
       },
     ],
     element: <Layout />,

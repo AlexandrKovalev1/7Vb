@@ -42,12 +42,13 @@ const slice = createAppSlice({
         }
       ),
       login: create.asyncThunk<{ isAuth: boolean }, AuthData>(
-        async (params: AuthData, { rejectWithValue }) => {
+        async (params: AuthData, { dispatch, rejectWithValue }) => {
           try {
             const res = await authApi.login(params)
 
             if (res.data.status === 'success') {
               localStorage.setItem('token', res.data.token)
+              dispatch(me(res.data.token))
 
               return {
                 isAuth: true,
@@ -81,9 +82,9 @@ const slice = createAppSlice({
         }
       ),
       me: createAThunk(
-        async (_, { rejectWithValue }) => {
+        async (tok: null | string | undefined, { rejectWithValue }) => {
           try {
-            const res = await authApi.me()
+            const res = await authApi.me(tok)
 
             return { ...res.data, isAuth: true }
           } catch (e) {
@@ -126,6 +127,9 @@ const slice = createAppSlice({
             state.id = id
             state.restrictions = restrictions
             state.username = username
+          },
+          rejected: state => {
+            state.isAuth = false
           },
         }
       ),

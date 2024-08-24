@@ -1,9 +1,7 @@
-import { useEffect } from 'react'
-
-import { useAppDispatch, useAppSelector } from '@/app/store/store'
+import { useAppSelector } from '@/app/store/store'
 import admin from '@/assets/img/admin.jpeg'
 import noPhoto from '@/assets/img/noPhoto.jpeg'
-import { me, selectUserDate } from '@/slices/auth/model/authSlice'
+import { selectUserDate } from '@/slices/auth/model/authSlice'
 
 import s from './sidebar.module.scss'
 
@@ -16,11 +14,6 @@ type Props = {
 
 export const Sidebar = ({ isAdmin }: Props) => {
   const { balance, username } = useAppSelector(selectUserDate)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(me())
-  }, [])
 
   return (
     <aside className={s.aside}>

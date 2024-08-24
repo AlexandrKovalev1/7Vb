@@ -1,3 +1,4 @@
+import { login, me } from '@/slices/auth/model/authSlice'
 import { PayloadAction, createSlice, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit'
 
 export type StatusType = 'failed' | 'idle' | 'loading' | 'succeeded'
@@ -5,6 +6,15 @@ export type StatusType = 'failed' | 'idle' | 'loading' | 'succeeded'
 export type DeviceType = 'desktop' | 'mobile'
 const slice = createSlice({
   extraReducers: builder => {
+    builder.addCase(login.pending, state => {
+      state.initialised = false
+    })
+    builder.addCase(me.fulfilled, state => {
+      state.initialised = true
+    })
+    builder.addCase(me.rejected, state => {
+      state.initialised = true
+    })
     builder.addMatcher(isPending, state => {
       state.status = 'loading'
       if (state.error) {
@@ -35,12 +45,15 @@ const slice = createSlice({
   initialState: {
     deviceType: 'desktop' as DeviceType,
     error: null as null | string,
-    initialized: false,
+    initialised: false,
     message: null as null | string,
     status: 'idle' as StatusType,
   },
   name: 'app',
   reducers: create => ({
+    setAppInitialized: create.reducer((state, action: PayloadAction<{ iniitialized: boolean }>) => {
+      state.initialised = action.payload.iniitialized
+    }),
     setDeviceType: create.reducer((state, action: PayloadAction<{ deviceType: DeviceType }>) => {
       state.deviceType = action.payload.deviceType
     }),
@@ -48,11 +61,18 @@ const slice = createSlice({
   selectors: {
     selectDeviceType: state => state.deviceType,
     selectErrorApp: state => state.error,
+    selectIsInitialized: state => state.initialised,
     selectMessageApp: state => state.message,
     selectStatus: state => state.status,
   },
 })
 
 export const appReducer = slice.reducer
-export const { setDeviceType } = slice.actions
-export const { selectDeviceType, selectErrorApp, selectMessageApp, selectStatus } = slice.selectors
+export const { setAppInitialized, setDeviceType } = slice.actions
+export const {
+  selectDeviceType,
+  selectErrorApp,
+  selectIsInitialized,
+  selectMessageApp,
+  selectStatus,
+} = slice.selectors

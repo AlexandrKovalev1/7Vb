@@ -60,7 +60,15 @@ export const authApi = {
   login: (params: AuthData) => {
     return instance.post<LoginResponse>('users/login', params)
   },
-  me: () => {
+  me: (tok?: null | string) => {
+    if (tok) {
+      return instance.get<MeResponse>('users/me', {
+        headers: {
+          Authorization: `Bearer ${tok}`,
+        },
+      })
+    }
+
     return instance.get<MeResponse>('users/me')
   },
   register: (data: SignUpValues) => {
