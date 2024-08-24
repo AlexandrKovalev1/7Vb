@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 import { PATH } from '@/app/router/routes'
-import { useAppDispatch } from '@/app/store/store'
+import { useAppDispatch, useAppSelector } from '@/app/store/store'
 import { Button, Card, TextField } from '@/components'
+import { selectMessageApp } from '@/slices/app/model/appSlice'
 import { showErrorMessage } from '@/slices/auth/lib/showErrorMessage'
 import { signUpValidate } from '@/slices/auth/lib/signUpValidate'
 import { register } from '@/slices/auth/model/authSlice'
@@ -11,6 +12,7 @@ import { useFormik } from 'formik'
 import s from './signUp.module.scss'
 
 export const SignUp = () => {
+  const message = useAppSelector(selectMessageApp)
   const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
@@ -20,13 +22,14 @@ export const SignUp = () => {
       username: '',
     },
     onSubmit: values => {
-      dispatch(register(values))
-        .unwrap()
-        .then(res => console.log(res))
-        .catch(e => console.log(e))
+      dispatch(register(values)).unwrap()
     },
     validate: signUpValidate,
   })
+
+  if (message === 'Register successed') {
+    return <Navigate to={PATH.LOGIN} />
+  }
 
   return (
     <div className={s.wrapper}>

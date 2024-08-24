@@ -21,6 +21,8 @@ export const Login = () => {
     },
     onSubmit: values => {
       dispatch(login(values))
+        .unwrap()
+        .then(() => formik.resetForm())
     },
     validate: signInValidate,
   })

@@ -2,6 +2,7 @@ import { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 import logo from '@/assets/img/Logo.png'
+import { LinearProgress } from '@/components'
 import clsx from 'clsx'
 
 import s from './header.module.scss'
@@ -20,6 +21,7 @@ export const Header = memo(({ isLoggedIn }: HeaderProps) => {
 
   return (
     <header className={classNames.header}>
+      {isLoggedIn && <LinearProgress />}
       <div className={s.container}>
         <div className={classNames.logoWrapper}>
           <Link to={'/'}>
@@ -28,6 +30,7 @@ export const Header = memo(({ isLoggedIn }: HeaderProps) => {
         </div>
         <NavBarOrBurgerMenu />
       </div>
+      {!isLoggedIn && <LinearProgress />}
     </header>
   )
 })

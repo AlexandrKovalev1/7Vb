@@ -1,4 +1,5 @@
 .accordionRoot {
+  width: 100%;
   background-color: var(--color-dark-primary);
   border-radius: 10px;
 }
@@ -9,6 +10,7 @@
   display: flex;
   align-items: center;
 
+  box-sizing: border-box;
   width: 100%;
   padding: 26px 42px;
 
@@ -67,7 +69,8 @@
 }
 
 .accordionContent {
-  overflow: hidden;
+  //overflow: hidden;
+  width: 100%;
 
   &[data-state='open'] {
     animation: slide-down 0.3s ease;
