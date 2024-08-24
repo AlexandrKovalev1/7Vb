@@ -1,15 +1,27 @@
+import { useEffect } from 'react'
+
+import { useAppDispatch, useAppSelector } from '@/app/store/store'
 import admin from '@/assets/img/admin.jpeg'
 import noPhoto from '@/assets/img/noPhoto.jpeg'
+import { me, selectUserDate } from '@/slices/auth/model/authSlice'
 
 import s from './sidebar.module.scss'
 
 import { Navigation } from './navigation'
+
 type Props = {
   isAdmin?: boolean | null
   userData?: any
 }
 
 export const Sidebar = ({ isAdmin }: Props) => {
+  const { balance, username } = useAppSelector(selectUserDate)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(me())
+  }, [])
+
   return (
     <aside className={s.aside}>
       <div className={s.content}>
@@ -18,8 +30,8 @@ export const Sidebar = ({ isAdmin }: Props) => {
             <img alt={'avatar'} className={s.avatar} src={isAdmin ? admin : noPhoto} />
           </div>
           <div className={s.userData}>
-            <span className={s.nickName}>{isAdmin ? 'Admin ' : 'Nickname'}</span>
-            <span className={s.balance}>Balance:180$</span>
+            <span className={s.nickName}>{isAdmin ? 'Admin ' : username}</span>
+            <span className={s.balance}>Balance: {balance}</span>
           </div>
         </div>
         <Navigation isAdmin={isAdmin} />

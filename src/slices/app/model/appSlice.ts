@@ -15,7 +15,7 @@ const slice = createSlice({
       }
     })
     builder.addMatcher(isFulfilled, (state, action: any) => {
-      if (action.payload.message) {
+      if (action.payload?.message) {
         state.message = action.payload.message
       }
       if (state.error) {

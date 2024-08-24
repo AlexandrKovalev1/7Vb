@@ -4,104 +4,170 @@ import { isAxiosError } from 'axios'
 
 const slice = createAppSlice({
   initialState: {
+    accountLevel: 'Guest' as 'Admin' | 'Guest' | 'User',
+    authIPs: null as null | string,
+    balance: null as null | string,
+    email: null as null | string,
+    emailConfirmed: false,
     id: null as null | string,
-    isAdmin: null as boolean | null,
-    isAuth: null as boolean | null,
+    isAuth: false,
+    restrictions: null as null | string,
+    username: null as null | string,
   },
   name: 'auth',
-  reducers: create => ({
-    logOut: create.asyncThunk<{ id: null; isAdmin: null; isAuth: null }>(
-      async () => {
-        await authApi.logOut()
+  reducers: create => {
+    const createAThunk = create.asyncThunk.withTypes<{
+      rejectValue: { message: string }
+    }>()
 
-        localStorage.removeItem('token')
+    return {
+      logOut: create.asyncThunk<any>(
+        async () => {
+          await authApi.logOut()
 
-        return { id: null, isAdmin: null, isAuth: null }
-      },
-      {
-        fulfilled: (state, action) => {
-          state.isAuth = action.payload.isAuth
-          state.isAdmin = action.payload.isAdmin
-          state.id = action.payload.id
+          localStorage.removeItem('token')
         },
-      }
-    ),
-    login: create.asyncThunk<{ isAuth: boolean }, AuthData>(
-      async (params: AuthData, { rejectWithValue }) => {
-        try {
-          const res = await authApi.login(params)
-
-          if (res.data.status === 'success') {
-            localStorage.setItem('token', res.data.token)
-
-            return {
-              isAuth: true,
-            }
-          } else {
-            return {
-              isAuth: false,
-            }
-          }
-        } catch (e) {
-          if (
-            isAxiosError<{
-              message: string
-              status: string
-            }>(e)
-          ) {
-            if (e.response) {
-              return rejectWithValue({ message: e.response?.data.message })
-            } else {
-              return rejectWithValue({ message: e.message })
-            }
-          }
-
-          return rejectWithValue({ message: e })
+        {
+          fulfilled: state => {
+            state.accountLevel = 'Guest'
+            state.authIPs = null
+            state.id = null
+            state.balance = null
+            state.email = null
+            state.emailConfirmed = false
+            state.isAuth = false
+            state.restrictions = null
+            state.username = null
+          },
         }
-      },
-      {
-        fulfilled: (state, action) => {
-          state.isAuth = action.payload.isAuth
+      ),
+      login: create.asyncThunk<{ isAuth: boolean }, AuthData>(
+        async (params: AuthData, { rejectWithValue }) => {
+          try {
+            const res = await authApi.login(params)
+
+            if (res.data.status === 'success') {
+              localStorage.setItem('token', res.data.token)
+
+              return {
+                isAuth: true,
+              }
+            } else {
+              return {
+                isAuth: false,
+              }
+            }
+          } catch (e) {
+            if (
+              isAxiosError<{
+                message: string
+                status: string
+              }>(e)
+            ) {
+              if (e.response) {
+                return rejectWithValue({ message: e.response?.data.message })
+              } else {
+                return rejectWithValue({ message: e.message })
+              }
+            }
+
+            return rejectWithValue({ message: e })
+          }
         },
-      }
-    ),
-    register: create.asyncThunk<{ message: string }, SignUpValues>(
-      async (data: SignUpValues, { rejectWithValue }) => {
-        try {
-          const res = await authApi.register(data)
-
-          if (res.data.status === 'success') {
-            return { message: 'Register successed' }
-          } else {
-            return { message: res.data.message }
-          }
-        } catch (e) {
-          if (
-            isAxiosError<{
-              message: string
-              status: string
-            }>(e)
-          ) {
-            if (e.response) {
-              return rejectWithValue({ message: e.response?.data.message })
-            } else {
-              return rejectWithValue({ message: e.message })
-            }
-          }
-
-          return rejectWithValue({ message: e })
+        {
+          fulfilled: (state, action) => {
+            state.isAuth = action.payload.isAuth
+          },
         }
-      }
-    ),
-  }),
+      ),
+      me: createAThunk(
+        async (_, { rejectWithValue }) => {
+          try {
+            const res = await authApi.me()
+
+            return { ...res.data, isAuth: true }
+          } catch (e) {
+            if (
+              isAxiosError<{
+                message: string
+                status: string
+              }>(e)
+            ) {
+              if (e.response) {
+                return rejectWithValue({ message: e.response?.data.message })
+              } else {
+                return rejectWithValue({ message: e.message })
+              }
+            }
+
+            return rejectWithValue({ message: (e as Error).message })
+          }
+        },
+        {
+          fulfilled: (state, action) => {
+            const {
+              accountLevel,
+              authIPs,
+              balance,
+              email,
+              emailConfirmed,
+              id,
+              isAuth,
+              restrictions,
+              username,
+            } = action.payload
+
+            state.accountLevel = accountLevel
+            state.balance = balance
+            state.authIPs = authIPs
+            state.email = email
+            state.isAuth = isAuth
+            state.emailConfirmed = emailConfirmed
+            state.id = id
+            state.restrictions = restrictions
+            state.username = username
+          },
+        }
+      ),
+      register: create.asyncThunk<{ message: string }, SignUpValues>(
+        async (data: SignUpValues, { rejectWithValue }) => {
+          try {
+            const res = await authApi.register(data)
+
+            if (res.data.status === 'success') {
+              return { message: 'Register successed' }
+            } else {
+              return { message: res.data.message }
+            }
+          } catch (e) {
+            if (
+              isAxiosError<{
+                message: string
+                status: string
+              }>(e)
+            ) {
+              if (e.response) {
+                return rejectWithValue({ message: e.response?.data.message })
+              } else {
+                return rejectWithValue({ message: e.message })
+              }
+            }
+
+            return rejectWithValue({ message: e })
+          }
+        }
+      ),
+    }
+  },
 
   selectors: {
-    selectIsAdmin: state => state.isAdmin,
+    selectIsAdmin: state => state.accountLevel === 'Admin',
     selectIsAuth: state => state.isAuth,
+    selectUserDate: state => state,
     selectUserId: state => state.id,
   },
 })
 
 export const authReducer = slice.reducer
-export const { selectIsAdmin, selectIsAuth, selectUserId } = slice.selectors
-export const { logOut, login, register } = slice.actions
+export const { selectIsAdmin, selectIsAuth, selectUserDate, selectUserId } = slice.selectors
+export const { logOut, login, me, register } = slice.actions

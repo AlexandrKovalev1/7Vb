@@ -26,6 +26,17 @@ export type LoginResponse = {
   token: string
 }
 
+export type MeResponse = {
+  accountLevel: 'Admin' | 'Guest' | 'User'
+  authIPs: string
+  balance: string
+  email: string
+  emailConfirmed: boolean
+  id: string
+  restrictions: string
+  username: string
+}
+
 export const authApi = {
   // getIsAuth: (auth: AuthData) => {
   //   return new Promise<LoginParams>((resolve, reject) => {
@@ -48,6 +59,9 @@ export const authApi = {
   // },
   login: (params: AuthData) => {
     return instance.post<LoginResponse>('users/login', params)
+  },
+  me: () => {
+    return instance.get<MeResponse>('users/me')
   },
   register: (data: SignUpValues) => {
     return instance.post<RegisterResponse>('users/register', data)

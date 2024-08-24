@@ -48,6 +48,10 @@ const rootRoutes: RouteObject[] = [
     path: '/7Vb/',
   },
   {
+    element: <Navigate to={PATH.ROOT} />,
+    path: '/*',
+  },
+  {
     element: <DistributorOfPath />,
     path: PATH.ROOT,
   },

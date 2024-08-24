@@ -1,11 +1,12 @@
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 
-import { useAppSelector } from '@/app/store/store'
+import { useAppDispatch, useAppSelector } from '@/app/store/store'
 import { Toast } from '@/components'
 import { Header } from '@/components/layout/header'
 import { selectDeviceType } from '@/slices/app/model/appSlice'
-import { selectIsAdmin, selectIsAuth } from '@/slices/auth/model/authSlice'
+import { me, selectIsAdmin, selectIsAuth } from '@/slices/auth/model/authSlice'
 import { useSetDeviceType } from '@/utils/useSetDeviceType'
 import clsx from 'clsx'
 
@@ -26,10 +27,15 @@ export const Layout = () => {
     layout: clsx(s.layout, isAuth && s.auth),
     main: clsx(s.main, s[deviceType], isAuth && s.auth),
   }
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(me())
+  }, [])
 
   return (
     <div className={classNames.layout}>
-      <Header isLoggedIn={!!isAuth} />
+      <Header isLoggedIn={isAuth} />
       {desktopMode && <Sidebar isAdmin={isAdmin} />}
       <main className={classNames.main}>
         <div className={s.container}>
