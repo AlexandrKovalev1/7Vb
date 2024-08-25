@@ -1,18 +1,13 @@
-import {
-  Navigate,
-  Outlet,
-  RouteObject,
-  RouterProvider,
-  createBrowserRouter,
-} from 'react-router-dom'
+import { Navigate, Outlet, RouteObject, createBrowserRouter } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/store/store'
-import { Login } from '@/components/auth/login/login'
+import { Login } from '@/components/auth'
 import { SignUp } from '@/components/auth/signUp/signUp'
 import { Layout } from '@/components/layout/layout'
 import { AdminProducts } from '@/pages/adminPages/products'
 import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
 import { Users } from '@/pages/adminPages/users'
+import { PageNotFound } from '@/pages/publicPages'
 import { Faq } from '@/pages/publicPages/faq'
 import { Home } from '@/pages/publicPages/home/home'
 import { Rules } from '@/pages/publicPages/rules'
@@ -22,7 +17,7 @@ import { Products } from '@/pages/userPages/products'
 import { ProductPage } from '@/pages/userPages/products/productPage'
 import { ProductsPage } from '@/pages/userPages/products/productsPage'
 import { Support } from '@/pages/userPages/support/support'
-import { selectIsAdmin, selectIsAuth } from '@/slices/auth/model/authSlice'
+import { selectIsAuth } from '@/slices/auth/model/authSlice'
 
 export const PATH = {
   BALANCE: '/balance',
@@ -42,203 +37,127 @@ export const PATH = {
   USERS: '/users',
 } as const
 
-const DistributorOfPath = () => {
-  const isAuth = useAppSelector(selectIsAuth)
-
-  return isAuth ? <Navigate to={PATH.PRODUCTS} /> : <Home />
-}
-
-const protectedRoutes: RouteObject[] = [
-  {
-    element: <></>,
-    path: PATH.USERS,
-  },
-  { element: <></>, path: PATH.BALANCE },
-  {
-    element: <></>,
-    path: PATH.NEWS,
-  },
-  {
-    children: [
-      {
-        element: <></>,
-        path: PATH.SUPPORT,
-      },
-      {
-        element: <></>,
-        path: PATH.SUPPORT_TICKET,
-      },
-    ],
-    element: <></>,
-    path: PATH.SUPPORT,
-  },
-  {
-    children: [
-      {
-        element: <></>,
-        path: PATH.PRODUCTS,
-      },
-      {
-        element: <></>,
-        path: PATH.PRODUCT_PAGE,
-      },
-    ],
-    element: <></>,
-    path: PATH.PRODUCTS,
-  },
-  {
-    element: <></>,
-    path: PATH.SETTINGS,
-  },
-  {
-    element: <></>,
-    path: PATH.LOGIN,
-  },
-]
-
-const ProtectedRoutes = () => {
+export const ProtectedRoutes = () => {
   const isAuth = useAppSelector(selectIsAuth)
 
   return isAuth ? <Outlet /> : <Navigate to={PATH.LOGIN} />
 }
 
-const rootRoutes: RouteObject[] = [
+export const DistributorOfPath = () => {
+  const isAuth = useAppSelector(selectIsAuth)
+
+  return isAuth ? <Navigate to={PATH.PRODUCTS} /> : <Navigate to={PATH.HOME} />
+}
+
+export const adminRoutes: RouteObject[] = [
   {
-    element: <Navigate to={PATH.ROOT} />,
-    path: '/7Vb/',
+    element: <Users />,
+    path: PATH.USERS,
   },
   {
-    element: <DistributorOfPath />,
-    path: PATH.ROOT,
+    element: <News />,
+    path: PATH.NEWS,
   },
   {
-    element: <Login />,
-    path: PATH.LOGIN,
+    children: [
+      {
+        element: <AdminSupportPage />,
+        path: PATH.SUPPORT,
+      },
+      {
+        element: <SupportTicket />,
+        path: PATH.SUPPORT_TICKET,
+      },
+    ],
+    element: <AdminSupport />,
+    path: PATH.SUPPORT,
+  },
+  {
+    element: <AdminProducts />,
+    path: PATH.PRODUCTS,
+  },
+  {
+    element: <div>Settings</div>,
+    path: PATH.SETTINGS,
   },
 ]
 
-const adminRouter = createBrowserRouter([
+export const userRoutes: RouteObject[] = [
   {
     children: [
-      ...rootRoutes,
       {
-        element: <Users />,
-        path: PATH.USERS,
-      },
-      {
-        element: <News />,
-        path: PATH.NEWS,
-      },
-      {
-        children: [
-          {
-            element: <AdminSupportPage />,
-            path: PATH.SUPPORT,
-          },
-          {
-            element: <SupportTicket />,
-            path: PATH.SUPPORT_TICKET,
-          },
-        ],
-        element: <AdminSupport />,
-        path: PATH.SUPPORT,
-      },
-      {
-        element: <AdminProducts />,
+        element: <ProductsPage />,
         path: PATH.PRODUCTS,
       },
       {
-        element: <div>Settings</div>,
-        path: PATH.SETTINGS,
+        element: <ProductPage />,
+        path: PATH.PRODUCT_PAGE,
       },
     ],
-    element: <Layout />,
-    errorElement: <Navigate to={'/error'} />,
-    path: PATH.ROOT,
+    element: <Products />,
+    path: PATH.PRODUCTS,
   },
-])
-
-const userRouter = createBrowserRouter([
   {
-    children: [
-      ...rootRoutes,
-      {
-        children: [
-          {
-            element: <ProductsPage />,
-            path: PATH.PRODUCTS,
-          },
-          {
-            element: <ProductPage />,
-            path: PATH.PRODUCT_PAGE,
-          },
-        ],
-        element: <Products />,
-        path: PATH.PRODUCTS,
-      },
-      {
-        element: <Balance />,
-        path: PATH.BALANCE,
-      },
-      {
-        element: <News />,
-        path: PATH.NEWS,
-      },
-      {
-        element: <Support />,
-        path: PATH.SUPPORT,
-      },
-      {
-        element: <div>Settings</div>,
-        path: PATH.SETTINGS,
-      },
-    ],
-    element: <Layout />,
-    errorElement: <Navigate to={'/error'} />,
-    path: PATH.ROOT,
+    element: <Balance />,
+    path: PATH.BALANCE,
   },
-])
-
-const publicRouter = createBrowserRouter([
   {
-    children: [
-      ...rootRoutes,
-      {
-        element: <SignUp />,
-        path: PATH.SIGN_UP,
-      },
-      {
-        element: <Home />,
-        path: PATH.HOME,
-      },
-      {
-        element: <Faq />,
-        path: PATH.FAQ,
-      },
-      {
-        element: <Rules />,
-        path: PATH.RULES,
-      },
-      {
-        children: protectedRoutes,
-        element: <ProtectedRoutes />,
-      },
-    ],
-    element: <Layout />,
-    errorElement: <Navigate to={'/error'} />,
-    path: PATH.ROOT,
+    element: <News />,
+    path: PATH.NEWS,
   },
-])
+  {
+    element: <Support />,
+    path: PATH.SUPPORT,
+  },
+  {
+    element: <div>Settings</div>,
+    path: PATH.SETTINGS,
+  },
+]
 
-export const Router = () => {
-  const isAdmin = useAppSelector(selectIsAdmin)
-  const isAuth = useAppSelector(selectIsAuth)
+export const commonRoutes: RouteObject[] = [
+  {
+    element: <SignUp />,
+    path: PATH.SIGN_UP,
+  },
+  {
+    element: <Home />,
+    path: PATH.HOME,
+  },
+  {
+    element: <Faq />,
+    path: PATH.FAQ,
+  },
+  {
+    element: <Rules />,
+    path: PATH.RULES,
+  },
+  {
+    children: [...adminRoutes, ...userRoutes],
+    element: <ProtectedRoutes />,
+  },
+]
 
-  if (isAuth) {
-    return <RouterProvider router={isAdmin ? adminRouter : userRouter} />
-  }
-
-  return <RouterProvider router={publicRouter} />
-}
-
-//cont
+export const createRouter: typeof createBrowserRouter = (routes: RouteObject[]) =>
+  createBrowserRouter([
+    {
+      children: [
+        {
+          element: <Navigate to={PATH.ROOT} />,
+          path: '/7Vb/',
+        },
+        {
+          element: <DistributorOfPath />,
+          path: PATH.ROOT,
+        },
+        {
+          element: <Login />,
+          path: PATH.LOGIN,
+        },
+        ...routes,
+      ],
+      element: <Layout />,
+      errorElement: <PageNotFound />,
+      path: PATH.ROOT,
+    },
+  ])
