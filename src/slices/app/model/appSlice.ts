@@ -6,9 +6,6 @@ export type StatusType = 'failed' | 'idle' | 'loading' | 'succeeded'
 export type DeviceType = 'desktop' | 'mobile'
 const slice = createSlice({
   extraReducers: builder => {
-    builder.addCase(login.pending, state => {
-      state.initialised = false
-    })
     builder.addCase(me.fulfilled, state => {
       state.initialised = true
     })

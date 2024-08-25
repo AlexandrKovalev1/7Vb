@@ -70,19 +70,17 @@ export const SignUp = () => {
               variant={'login'}
               {...formik.getFieldProps('email')}
             />
-            <Button className={s.button} disabled={!!Object.keys(formik.errors).length}>
+            <Button
+              className={s.button}
+              disabled={!!Object.keys(formik.errors).length}
+              type={'submit'}
+            >
               Sign Up
             </Button>
           </div>
           <small>
             Have an account?{' '}
-            <Button
-              as={Link}
-              className={s.buttonLink}
-              to={PATH.LOGIN}
-              type={'button'}
-              variant={'link'}
-            >
+            <Button as={Link} className={s.buttonLink} to={PATH.LOGIN} variant={'link'}>
               Sign in
             </Button>
           </small>

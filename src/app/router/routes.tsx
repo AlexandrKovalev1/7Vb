@@ -50,38 +50,48 @@ const DistributorOfPath = () => {
 
 const protectedRoutes: RouteObject[] = [
   {
+    element: <></>,
     path: PATH.USERS,
   },
-  { path: PATH.BALANCE },
+  { element: <></>, path: PATH.BALANCE },
   {
+    element: <></>,
     path: PATH.NEWS,
   },
   {
     children: [
       {
+        element: <></>,
         path: PATH.SUPPORT,
       },
       {
+        element: <></>,
         path: PATH.SUPPORT_TICKET,
       },
     ],
+    element: <></>,
     path: PATH.SUPPORT,
   },
   {
     children: [
       {
+        element: <></>,
         path: PATH.PRODUCTS,
       },
       {
+        element: <></>,
         path: PATH.PRODUCT_PAGE,
       },
     ],
+    element: <></>,
     path: PATH.PRODUCTS,
   },
   {
+    element: <></>,
     path: PATH.SETTINGS,
   },
   {
+    element: <></>,
     path: PATH.LOGIN,
   },
 ]
@@ -98,12 +108,12 @@ const rootRoutes: RouteObject[] = [
     path: '/7Vb/',
   },
   {
-    element: <Navigate to={PATH.ROOT} />,
-    path: '/*',
-  },
-  {
     element: <DistributorOfPath />,
     path: PATH.ROOT,
+  },
+  {
+    element: <Login />,
+    path: PATH.LOGIN,
   },
 ]
 
@@ -140,10 +150,6 @@ const adminRouter = createBrowserRouter([
       {
         element: <div>Settings</div>,
         path: PATH.SETTINGS,
-      },
-      {
-        element: <Login />,
-        path: PATH.LOGIN,
       },
     ],
     element: <Layout />,
@@ -186,10 +192,6 @@ const userRouter = createBrowserRouter([
         element: <div>Settings</div>,
         path: PATH.SETTINGS,
       },
-      {
-        element: <Login />,
-        path: PATH.LOGIN,
-      },
     ],
     element: <Layout />,
     errorElement: <Navigate to={'/error'} />,
@@ -197,25 +199,13 @@ const userRouter = createBrowserRouter([
   },
 ])
 
-// /* --- мешает переходу в error404после вылогинизации
 const publicRouter = createBrowserRouter([
   {
     children: [
-      {
-        element: <DistributorOfPath />,
-        path: PATH.ROOT,
-      },
+      ...rootRoutes,
       {
         element: <SignUp />,
         path: PATH.SIGN_UP,
-      },
-      {
-        element: <Login />,
-        path: PATH.LOGIN,
-      },
-      {
-        element: <Navigate to={PATH.ROOT} />,
-        path: '/7Vb/',
       },
       {
         element: <Home />,
@@ -250,3 +240,5 @@ export const Router = () => {
 
   return <RouterProvider router={publicRouter} />
 }
+
+//cont

@@ -54,17 +54,13 @@ export const Login = () => {
               {...formik.getFieldProps('password')}
               errorMessage={showErrorMessage(formik, 'password')}
             />
-            <Button className={s.button}>Log in</Button>
+            <Button className={s.button} type={'submit'}>
+              Log in
+            </Button>
           </div>
           <small>
             Don't have an account?{' '}
-            <Button
-              as={Link}
-              className={s.buttonLink}
-              to={PATH.SIGN_UP}
-              type={'submit'}
-              variant={'link'}
-            >
+            <Button as={Link} className={s.buttonLink} to={PATH.SIGN_UP} variant={'link'}>
               Registration
             </Button>
           </small>
