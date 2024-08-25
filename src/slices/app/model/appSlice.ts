@@ -1,4 +1,4 @@
-import { login, me } from '@/slices/auth/model/authSlice'
+import { me } from '@/slices/auth/model/authSlice'
 import { PayloadAction, createSlice, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit'
 
 export type StatusType = 'failed' | 'idle' | 'loading' | 'succeeded'

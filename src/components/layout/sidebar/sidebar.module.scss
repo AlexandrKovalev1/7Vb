@@ -21,9 +21,10 @@
 }
 
 .userInfo {
-  display: flex;
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: 70px 1fr;
   align-items: center;
-  justify-content: space-between;
 
   width: 90%;
   min-height: 100px;
