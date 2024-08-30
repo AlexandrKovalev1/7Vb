@@ -27,9 +27,11 @@ export const ProductCard = ({ product }: Props) => {
         </div>
         {hasSubscription && <span>Days left:{remainingTime}</span>}
       </div>
-      <Button as={Link} className={s.buttonBuy} to={`${name}/${id}`} variant={'primary'}>
-        Download
-      </Button>
+      {!hasSubscription && (
+        <Button as={Link} className={s.buttonBuy} to={`${name}/${id}`} variant={'primary'}>
+          Buy
+        </Button>
+      )}
     </Card>
   )
 }

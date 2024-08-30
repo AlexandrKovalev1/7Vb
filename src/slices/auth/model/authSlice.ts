@@ -82,7 +82,7 @@ const slice = createAppSlice({
         }
       ),
       me: createAThunk(
-        async (undefined, { rejectWithValue }) => {
+        async (p: undefined, { rejectWithValue }) => {
           try {
             const res = await authApi.me()
 
@@ -165,7 +165,7 @@ const slice = createAppSlice({
   },
 
   selectors: {
-    selectIsAdmin: state => state.accountLevel === 'Admin',
+    selectIsAdmin: state => state.accountLevel !== 'Admin',
     selectIsAuth: state => state.isAuth,
     selectUserDate: state => state,
     selectUserId: state => state.id,

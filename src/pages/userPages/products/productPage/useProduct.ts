@@ -7,7 +7,7 @@ export const useProduct = () => {
   const { id: idProduct } = useParams()
 
   const products = useAppSelector(selectProducts)
-  const product = products.find(p => p.id === idProduct)
+  const product = products.find(p => p.id.toString() === idProduct)
 
   return {
     product,

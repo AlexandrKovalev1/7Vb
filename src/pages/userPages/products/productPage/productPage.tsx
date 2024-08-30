@@ -17,10 +17,10 @@ export const ProductPage = () => {
   return (
     <div className={s.wrapper}>
       <Card className={s.coverBlock}>
-        <img alt={'coverImg'} className={s.cover} src={product?.cover} />
+        <img alt={'coverImg'} className={s.cover} src={product?.imageUrl} />
       </Card>
       <Card className={s.heading}>
-        <h2>{product?.Title}</h2>
+        <h2>{product?.name}</h2>
         <span>{product?.Type}</span>
       </Card>
       <PurchaseBlock />
