@@ -1,5 +1,4 @@
 import { instance } from '@/services/api/api'
-import axios from 'axios'
 
 export type AuthData = {
   password: string
@@ -61,17 +60,7 @@ export const authApi = {
   login: (params: AuthData) => {
     return instance.post<LoginResponse>('users/login', params)
   },
-  me: (tok?: null | string) => {
-    if (tok) {
-      axios.defaults.headers.authorization = `Bearer ${tok}`
-
-      return instance.get<MeResponse>('users/me', {
-        headers: {
-          Authorization: `Bearer ${tok}`,
-        },
-      })
-    }
-
+  me: () => {
     return instance.get<MeResponse>('users/me')
   },
   register: (data: SignUpValues) => {

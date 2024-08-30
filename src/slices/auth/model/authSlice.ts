@@ -48,7 +48,7 @@ const slice = createAppSlice({
 
             if (res.data.status === 'success') {
               localStorage.setItem('token', res.data.token)
-              dispatch(me(res.data.token))
+              dispatch(me())
 
               return {
                 isAuth: true,
@@ -82,9 +82,9 @@ const slice = createAppSlice({
         }
       ),
       me: createAThunk(
-        async (tok: null | string | undefined, { rejectWithValue }) => {
+        async (undefined, { rejectWithValue }) => {
           try {
-            const res = await authApi.me(tok)
+            const res = await authApi.me()
 
             return { ...res.data, isAuth: true }
           } catch (e) {

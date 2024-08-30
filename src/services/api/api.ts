@@ -13,9 +13,9 @@ const getToken = () => {
 
 export const instance = axios.create({
   baseURL: 'http://localhost:3000/api/',
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`,
-  },
+  // headers: {
+  //   Authorization: `Bearer ${localStorage.getItem('token')}`,
+  // },
   withCredentials: true,
 })
 
