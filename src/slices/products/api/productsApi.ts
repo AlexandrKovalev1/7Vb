@@ -1,7 +1,8 @@
-import { products } from '@/common/data/prevData'
+import { instance } from '@/services/api/api'
+import { ProductItem } from '@/slices/products/products.types'
 
 export const productsApi = {
   getProducts: () => {
-    return Promise.resolve({ data: products })
+    return instance.get<ProductItem[]>(`products/getall`)
   },
 }

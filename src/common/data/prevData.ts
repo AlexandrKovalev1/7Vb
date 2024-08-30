@@ -6,100 +6,54 @@ import newsCover3 from '@/assets/img/farcry.jpeg'
 import newsCover1 from '@/assets/img/stalk (1).jpg'
 import cover6 from '@/assets/img/witcher.jpeg'
 import { NewsItemType } from '@/slices/news/news.types'
-import { Product } from '@/slices/products/products.types'
+import { Product, ProductItem } from '@/slices/products/products.types'
 import { SupportMessages } from '@/slices/supportMessages/supportMessages.types'
 
-export const products: Product[] = [
+export const products: ProductItem[] = [
   {
-    PriceInUSD: '80 usd',
-    Title: 'Counter Strike 2',
-    Type: 'Internal',
-    cover: cover,
-    daysLeft: 10,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',
-    id: '1',
-    subscribeStatus: 'Active',
+    description: 'This is a sample product.',
+    hasSubscription: false,
+    id: 1,
+    imageUrl: 'http://example.com/image.jpg',
+    name: 'Sample Product',
+    remainingTime: null,
+    status: 'Active',
   },
   {
-    PriceInUSD: '80 usd',
-    Title: 'Assassins creed',
-    Type: 'External',
-    cover: cover4,
-    daysLeft: null,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',
-    id: '2',
-    subscribeStatus: 'None active',
+    description: 'This is a sample product.',
+    hasSubscription: false,
+    id: 2,
+    imageUrl: 'http://example.com/image.jpg',
+    name: 'Sample Product',
+    remainingTime: null,
+    status: 'Active',
   },
   {
-    PriceInUSD: '80 usd',
-    Title: 'Atomic Heart',
-    Type: 'Individual',
-    cover: cover5,
-    daysLeft: 10,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',
-    id: '3',
-    subscribeStatus: 'On update',
+    description: 'This is a sample product.',
+    hasSubscription: false,
+    id: 3,
+    imageUrl: 'http://example.com/image.jpg',
+    name: 'Sample Product',
+    remainingTime: null,
+    status: 'Active',
   },
   {
-    PriceInUSD: '80 usd',
-    Title: 'Counter Strike 2',
-    Type: 'Internal',
-    cover: cover,
-    daysLeft: 10,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',
-    id: '4',
-    subscribeStatus: 'Active',
+    description: 'This is a sample product.',
+    hasSubscription: false,
+    id: 4,
+    imageUrl: 'http://example.com/image.jpg',
+    name: 'Sample Product',
+    remainingTime: null,
+    status: 'Active',
   },
   {
-    PriceInUSD: '80 usd',
-    Title: 'Witcher',
-    Type: 'Internal',
-    cover: cover6,
-    daysLeft: 10,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',
-    id: '5',
-    subscribeStatus: 'Active',
-  },
-  {
-    PriceInUSD: '80 usd',
-    Title: 'Counter Strike 2',
-    Type: 'Internal',
-    cover: cover,
-    daysLeft: 10,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',
-    id: '234',
-    subscribeStatus: 'Active',
-  },
-  {
-    PriceInUSD: '80 usd',
-    Title: 'Atomic Heart',
-    Type: 'Internal',
-    cover: cover5,
-    daysLeft: 10,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?' +
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa cum delectus, dolores est exercitationem fugit id illo illum maiores minus nobis, nulla pariatur quasi qui repellat sapiente totam ut?',
-    id: '23456',
-    subscribeStatus: 'Active',
+    description: 'This is a sample product.',
+    hasSubscription: false,
+    id: 5,
+    imageUrl: 'http://example.com/image.jpg',
+    name: 'Sample Product',
+    remainingTime: null,
+    status: 'Active',
   },
 ]
 

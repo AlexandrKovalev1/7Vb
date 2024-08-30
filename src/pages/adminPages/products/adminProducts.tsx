@@ -18,10 +18,10 @@ export const AdminProducts = () => {
     <Table buttonTitle={'Add product'} heading={'Products'} params={['Id', 'Name', 'Type', '']}>
       {products?.map(product => (
         <AdminProductListItem
-          Title={product.Title}
-          Type={product.Type}
+          // Type={product.Type}
           id={product.id}
           key={product.id}
+          name={product.name}
         />
       ))}
     </Table>

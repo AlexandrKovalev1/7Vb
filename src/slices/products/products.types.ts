@@ -1,10 +1,15 @@
-export type Product = {
-  PriceInUSD: string
-  Title: string
-  Type: 'External' | 'Individual' | 'Internal'
-  cover: string
-  daysLeft: null | number
-  description: null | string
-  id: string
-  subscribeStatus: 'Active' | 'None active' | 'On update'
+// export type Product = {
+//   PriceInUSD: string
+//   Type: 'External' | 'Individual' | 'Internal'
+
+// }
+
+export type ProductItem = {
+  description: string
+  hasSubscription: boolean
+  id: number
+  imageUrl: string
+  name: string
+  remainingTime?: null | string
+  status: 'Active' | 'None active' | 'On update'
 }

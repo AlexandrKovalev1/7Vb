@@ -1,14 +1,14 @@
 import { createAppSlice } from '@/common/utils/createAppSilce'
 import { productsApi } from '@/slices/products/api/productsApi'
-import { Product } from '@/slices/products/products.types'
+import { ProductItem } from '@/slices/products/products.types'
 
 const slice = createAppSlice({
   initialState: {
-    products: [] as Product[],
+    products: [] as ProductItem[],
   },
   name: 'products',
   reducers: create => ({
-    fetchProducts: create.asyncThunk<{ products: Product[] }>(
+    fetchProducts: create.asyncThunk<{ products: ProductItem[] }>(
       async () => {
         const res = await productsApi.getProducts()
 

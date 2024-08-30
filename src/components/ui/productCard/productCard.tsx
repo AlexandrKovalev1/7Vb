@@ -1,33 +1,33 @@
 import { Link } from 'react-router-dom'
 
 import { Button, Card } from '@/components'
-import { Product } from '@/slices/products/products.types'
+import { ProductItem } from '@/slices/products/products.types'
 
 import s from './productCard.module.scss'
 
 type Props = {
-  product: Product
+  product: ProductItem
 }
 export const ProductCard = ({ product }: Props) => {
-  const { Title, Type, cover, daysLeft, id, subscribeStatus } = product
+  const { hasSubscription, id, imageUrl, name, remainingTime, status } = product
 
-  const statusClass = subscribeStatus.toLowerCase().split(' ').join('')
+  const statusClass = status.toLowerCase().split(' ').join('')
 
   return (
     <Card className={s.cardWrapper}>
-      <Link to={`${Title}/${id}`}>
-        <img alt={'cover-product'} className={s.cardCover} src={cover} />
+      <Link to={`${name}/${id}`}>
+        <img alt={'cover-product'} className={s.cardCover} src={imageUrl} />
       </Link>
       <div className={s.blockInfo}>
-        <h2>{Title}</h2>
-        <h3>{Type}</h3>
+        <h2>{name}</h2>
+        <h3>{'Type'}</h3>
 
         <div className={`${s.subscribeStatus} ${s[statusClass]}`}>
-          Subscribe status:{<span> {subscribeStatus}</span>}
+          Subscribe status:{<span> {status}</span>}
         </div>
-        {subscribeStatus !== 'None active' && <span>Days left:{daysLeft} days</span>}
+        {hasSubscription && <span>Days left:{remainingTime}</span>}
       </div>
-      <Button as={Link} className={s.buttonBuy} to={`${Title}/${id}`} variant={'primary'}>
+      <Button as={Link} className={s.buttonBuy} to={`${name}/${id}`} variant={'primary'}>
         Download
       </Button>
     </Card>
