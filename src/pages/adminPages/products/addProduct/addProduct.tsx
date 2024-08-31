@@ -75,7 +75,7 @@ export const AddProduct = () => {
             <TextField id={'imageUrl'} {...formik.getFieldProps('imageUrl')} />
           </div>
           <div className={s.textFieldWrapper}>
-            <label htmlFor={'checkbox'}>availableToAll</label>
+            <label htmlFor={'checkbox'}>AvailableToAll</label>
             <Checkbox
               checked={formik.values.availableToAll}
               className={s.checkbox}
