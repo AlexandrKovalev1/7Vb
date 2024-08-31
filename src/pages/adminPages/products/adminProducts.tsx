@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { PATH } from '@/app/router/routes'
 import { useAppDispatch, useAppSelector } from '@/app/store/store'
 import { Table } from '@/components'
 import { AdminProductListItem } from '@/pages/adminPages/products/adminProductListItem'
@@ -15,7 +16,12 @@ export const AdminProducts = () => {
   }, [])
 
   return (
-    <Table buttonTitle={'Add product'} heading={'Products'} params={['Id', 'Name', 'Type', '']}>
+    <Table
+      buttonTitle={'Add product'}
+      heading={'Products'}
+      params={['Id', 'Name', 'Type', '']}
+      pathLink={PATH.ADD_PRODUCT}
+    >
       {products?.map(product => (
         <AdminProductListItem
           // Type={product.Type}

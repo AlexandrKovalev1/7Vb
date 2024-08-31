@@ -1,6 +1,7 @@
 import { createAppSlice } from '@/common/utils/createAppSilce'
 import { productsApi } from '@/slices/products/api/productsApi'
-import { ProductItem } from '@/slices/products/products.types'
+import { AddProductOptions, ProductItem } from '@/slices/products/products.types'
+import { isAxiosError } from 'axios'
 
 const slice = createAppSlice({
   initialState: {
@@ -8,6 +9,30 @@ const slice = createAppSlice({
   },
   name: 'products',
   reducers: create => ({
+    addProduct: create.asyncThunk<{}, AddProductOptions>(
+      async (options: AddProductOptions, { rejectWithValue }) => {
+        try {
+          await productsApi.addProduct(options)
+
+          return {}
+        } catch (e) {
+          if (
+            isAxiosError<{
+              message: string
+              status: string
+            }>(e)
+          ) {
+            if (e.response) {
+              return rejectWithValue({ message: e.response?.data.message })
+            } else {
+              return rejectWithValue({ message: e.message })
+            }
+          }
+
+          return rejectWithValue({ message: e })
+        }
+      }
+    ),
     fetchProducts: create.asyncThunk<{ products: ProductItem[] }>(
       async () => {
         const res = await productsApi.getProducts()

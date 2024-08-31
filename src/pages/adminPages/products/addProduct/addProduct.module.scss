@@ -1,0 +1,53 @@
+.card {
+  border-radius: 15px;
+}
+
+.textFieldWrapper {
+  cursor: pointer;
+
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  column-gap: 10px;
+  align-items: center;
+
+  padding: 0 5px;
+}
+
+.form {
+  display: grid;
+  row-gap: 25px;
+  padding: 30px 50px;
+}
+
+.description {
+  all: unset;
+
+  resize: none;
+
+  box-sizing: border-box;
+  width: calc(100% + 6px);
+  min-height: 150px;
+  padding: 30px 90px 30px 30px;
+
+  background-color: var(--color-dark-secondary);
+  border: 3px solid var(--color-dark-text);
+  border-radius: 10px;
+
+  &:focus-within,
+  &:active {
+    border: 3px solid var(--color-dark-accent-1);
+  }
+}
+
+.checkbox {
+}
+
+.buttonWrapper {
+  width: 100%;
+  text-align: end;
+
+  & button {
+    padding: 5px 25px;
+    border-radius: 10px;
+  }
+}

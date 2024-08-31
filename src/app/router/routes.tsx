@@ -5,6 +5,8 @@ import { Login } from '@/components/auth'
 import { SignUp } from '@/components/auth/signUp/signUp'
 import { Layout } from '@/components/layout/layout'
 import { AdminProducts } from '@/pages/adminPages/products'
+import { AddProduct } from '@/pages/adminPages/products/addProduct'
+import { AdminProductsOutlet } from '@/pages/adminPages/products/adminProductsOutlet'
 import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
 import { Users } from '@/pages/adminPages/users'
 import { PageNotFound } from '@/pages/publicPages'
@@ -20,6 +22,7 @@ import { Support } from '@/pages/userPages/support/support'
 import { selectIsAuth } from '@/slices/auth/model/authSlice'
 
 export const PATH = {
+  ADD_PRODUCT: ':addProduct',
   BALANCE: '/balance',
   FAQ: '/FAQ',
   HOME: '/home',
@@ -73,7 +76,17 @@ export const adminRoutes: RouteObject[] = [
     path: PATH.SUPPORT,
   },
   {
-    element: <AdminProducts />,
+    children: [
+      {
+        element: <AdminProducts />,
+        path: PATH.PRODUCTS,
+      },
+      {
+        element: <AddProduct />,
+        path: PATH.ADD_PRODUCT,
+      },
+    ],
+    element: <AdminProductsOutlet />,
     path: PATH.PRODUCTS,
   },
   {

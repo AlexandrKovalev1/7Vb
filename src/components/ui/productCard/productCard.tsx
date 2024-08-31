@@ -9,9 +9,9 @@ type Props = {
   product: ProductItem
 }
 export const ProductCard = ({ product }: Props) => {
-  const { hasSubscription, id, imageUrl, name, remainingTime, status } = product
+  const { hasSubscription, id, imageUrl, name, remainingTime, status, type } = product
 
-  const statusClass = status.toLowerCase().split(' ').join('')
+  const statusClass = status.toLowerCase()
 
   return (
     <Card className={s.cardWrapper}>
@@ -20,7 +20,7 @@ export const ProductCard = ({ product }: Props) => {
       </Link>
       <div className={s.blockInfo}>
         <h2>{name}</h2>
-        <h3>{'Type'}</h3>
+        <h3>{type}</h3>
 
         <div className={`${s.subscribeStatus} ${s[statusClass]}`}>
           Subscribe status:{<span> {status}</span>}

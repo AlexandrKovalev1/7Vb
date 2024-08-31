@@ -5,6 +5,7 @@ import s from './checkbox.module.scss'
 
 type Props = {
   checked?: boolean
+  className?: string
   disabled?: boolean
   id?: string
   label?: string
@@ -12,9 +13,9 @@ type Props = {
   onChange?: (checked: boolean) => void
 }
 
-export const Checkbox = ({ checked, disabled, id, label, name, onChange }: Props) => {
+export const Checkbox = ({ checked, className, disabled, id, label, name, onChange }: Props) => {
   return (
-    <label className={`${s.label} ${disabled && s.disabled}`}>
+    <label className={`${s.label} ${disabled && s.disabled} ${className}`}>
       <CheckboxRadix.Root
         checked={checked}
         className={s.checkboxRoot}
