@@ -1,5 +1,15 @@
 .card {
+  padding: 30px 50px;
   border-radius: 15px;
+}
+
+.buttonBackWrapper {
+  margin-bottom: 25px;
+  text-align: end;
+
+  & button {
+    padding: 5px 25px;
+  }
 }
 
 .textFieldWrapper {
@@ -16,7 +26,6 @@
 .form {
   display: grid;
   row-gap: 25px;
-  padding: 30px 50px;
 }
 
 .description {
@@ -48,6 +57,5 @@
 
   & button {
     padding: 5px 25px;
-    border-radius: 10px;
   }
 }

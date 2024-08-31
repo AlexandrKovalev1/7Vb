@@ -24,10 +24,10 @@ export const AdminProducts = () => {
     >
       {products?.map(product => (
         <AdminProductListItem
-          // Type={product.Type}
           id={product.id}
           key={product.id}
           name={product.name}
+          type={product.type}
         />
       ))}
     </Table>
