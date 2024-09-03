@@ -40,7 +40,9 @@ const slice = createAppSlice({
     editProduct: create.asyncThunk<{}, { id: string; options: EditProductOptions }>(
       async ({ id, options }: { id: string; options: EditProductOptions }, { rejectWithValue }) => {
         try {
-          await productsApi.editProduct(id, options)
+          const res = await productsApi.editProduct(id, options)
+
+          console.log(res)
 
           return {}
         } catch (e) {

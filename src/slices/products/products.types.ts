@@ -36,6 +36,18 @@ export type EditProductOptions = {
   description: string
   imageUrl: string
   name: string
-  status: string
-  type: string
+  status: ProductStatus
+  type: ProductType
+}
+
+export type EditProductResponse = {
+  GoogleDriveFileID: string
+  allowedUsers: number[]
+  availableToAll: boolean
+  description: string
+  id: number
+  imageUrl: string
+  name: string
+  status: ProductStatus
+  type: ProductType
 }

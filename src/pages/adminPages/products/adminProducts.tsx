@@ -10,7 +10,6 @@ export const AdminProducts = () => {
   const products = useAppSelector(selectProducts)
   const dispatch = useAppDispatch()
 
-  console.log(products)
   useEffect(() => {
     dispatch(productsThunks.fetchProducts())
   }, [])
