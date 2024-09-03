@@ -68,6 +68,6 @@ export const Navigation = ({ isAdmin }: Props) => {
   )
 }
 
-const classNameHandler = ({ isActive }: { isActive: boolean }) => {
+export const classNameHandler = ({ isActive }: { isActive: boolean }) => {
   return isActive ? s.active : undefined
 }

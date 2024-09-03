@@ -8,9 +8,9 @@ import { productsThunks, selectProducts } from '@/slices/products/model/products
 
 export const AdminProducts = () => {
   const products = useAppSelector(selectProducts)
-
   const dispatch = useAppDispatch()
 
+  console.log(products)
   useEffect(() => {
     dispatch(productsThunks.fetchProducts())
   }, [])
@@ -21,6 +21,7 @@ export const AdminProducts = () => {
       heading={'Products'}
       params={['Id', 'Name', 'Type', '']}
       pathLink={PATH.ADD_PRODUCT}
+      rounded
     >
       {products?.map(product => (
         <AdminProductListItem

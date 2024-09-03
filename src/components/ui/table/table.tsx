@@ -11,11 +11,20 @@ type Props = {
   heading: string
   params: string[]
   pathLink?: string
-  variant?: 'products' | 'support' | 'users'
+  rounded?: boolean
+  variant?: 'products' | 'subs' | 'support' | 'users'
 }
-export const Table = ({ buttonTitle, children, heading, params, pathLink, variant }: Props) => {
+export const Table = ({
+  buttonTitle,
+  children,
+  heading,
+  params,
+  pathLink,
+  rounded = false,
+  variant,
+}: Props) => {
   return (
-    <table className={s.table}>
+    <table className={`${s.table} ${rounded && s.rounded}`}>
       <thead className={s.tableHead}>
         <tr>
           <td style={{ color: 'var(--color-dark-accent-1)' }}>{heading}</td>

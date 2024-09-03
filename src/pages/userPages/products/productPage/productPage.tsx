@@ -21,7 +21,7 @@ export const ProductPage = () => {
       </Card>
       <Card className={s.heading}>
         <h2>{product?.name}</h2>
-        <span>{product?.Type}</span>
+        <span>{product?.type}</span>
       </Card>
       <PurchaseBlock />
       <Card className={s.description}>{product?.description}</Card>

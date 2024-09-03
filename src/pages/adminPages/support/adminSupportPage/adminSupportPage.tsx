@@ -19,6 +19,7 @@ export const AdminSupportPage = () => {
         buttonTitle={'Create Ticket'}
         heading={'Your tickets'}
         params={['Id', 'Description', 'Status', '']}
+        rounded
       >
         {messages?.map(dialog => (
           <AdminSupportPreviewItem

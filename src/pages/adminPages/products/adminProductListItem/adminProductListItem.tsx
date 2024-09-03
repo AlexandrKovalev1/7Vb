@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom'
+
+import { PATH } from '@/app/router/routes'
 import { Button, Card } from '@/components'
 import { ProductItem } from '@/slices/products/products.types'
 
@@ -12,7 +15,9 @@ export const AdminProductListItem = ({ id, name, type }: AdminProductItemProps) 
       <td>{name}</td>
       <td className={s.type}>{type}</td>
       <td>
-        <Button variant={'table'}>Edit</Button>
+        <Button as={Link} to={`${PATH.ADMIN_PRODUCTS_EDIT_PRODUCT}/${id}`} variant={'table'}>
+          Edit
+        </Button>
       </td>
     </Card>
   )

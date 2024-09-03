@@ -5,27 +5,21 @@
 // }
 
 export type ProductItem = {
+  GoogleDriveFileID?: string
+  availableToAll?: boolean
   description: string
   hasSubscription: boolean
   id: number
   imageUrl: string
   name: string
   remainingTime?: null | string
-  status: 'Active' | 'NotActive' | 'OnUpdate'
-  type: 'Alpha' | 'Beta' | 'Stable'
+  status: ProductStatus
+  type: ProductType
 }
 
-export type AddProductResponse = {
-  GoogleDriveFileID: string
-  allowedUsers: string
-  availableToAll: boolean
-  description: string
-  id: number
-  imageUrl: string
-  name: string
-  status: string
-  type: string
-}
+export type ProductStatus = 'Active' | 'NotActive' | 'OnUpdate'
+
+export type ProductType = 'Alpha' | 'Beta' | 'Stable'
 
 export type AddProductOptions = {
   allowedUsers: number[]
@@ -34,4 +28,14 @@ export type AddProductOptions = {
   imageUrl: string
   name: string
   status: string
+}
+
+export type EditProductOptions = {
+  GoogleDriveFileID: string
+  availableToAll: boolean
+  description: string
+  imageUrl: string
+  name: string
+  status: string
+  type: string
 }

@@ -6,7 +6,12 @@ import { SignUp } from '@/components/auth/signUp/signUp'
 import { Layout } from '@/components/layout/layout'
 import { AdminProducts } from '@/pages/adminPages/products'
 import { AddProduct } from '@/pages/adminPages/products/addProduct'
+import { AvilableUsers } from '@/pages/adminPages/products/addProduct/avilableUsers/avilableUsers'
+import { General } from '@/pages/adminPages/products/addProduct/general/general'
+import { Subscriptions } from '@/pages/adminPages/products/addProduct/subscriptions'
 import { AdminProductsOutlet } from '@/pages/adminPages/products/adminProductsOutlet'
+import { EditProductPage } from '@/pages/adminPages/products/editProductPage'
+import { EditProductForm } from '@/pages/adminPages/products/editProductPage/editProductForm'
 import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
 import { Users } from '@/pages/adminPages/users'
 import { PageNotFound } from '@/pages/publicPages'
@@ -22,7 +27,14 @@ import { Support } from '@/pages/userPages/support/support'
 import { selectIsAuth } from '@/slices/auth/model/authSlice'
 
 export const PATH = {
-  ADD_PRODUCT: ':addProduct',
+  ADD_PRODUCT: 'addProduct',
+  ADMIN_PRODUCT_SUBSCRIPTIONS: 'subscriptions',
+  ADMIN_PRODUCTS_AVALIBLE_USERS: 'avalible-users',
+  ADMIN_PRODUCTS_EDIT_PRODUCT: 'edit-product',
+  ADMIN_PRODUCTS_EDIT_PRODUCT_PAGE: ':id',
+  ADMIN_PRODUCTS_GENERAL: 'general',
+  ADMIN_PRODUCTS_MANUAL: 'manual',
+  ADMIN_PRODUCTS_TRANSACTIONS: '',
   BALANCE: '/balance',
   FAQ: '/FAQ',
   HOME: '/home',
@@ -78,10 +90,28 @@ export const adminRoutes: RouteObject[] = [
   {
     children: [
       {
+        children: [{ element: <EditProductForm />, path: PATH.ADMIN_PRODUCTS_EDIT_PRODUCT_PAGE }],
+        element: <EditProductPage />,
+        path: PATH.ADMIN_PRODUCTS_EDIT_PRODUCT,
+      },
+      {
         element: <AdminProducts />,
         path: PATH.PRODUCTS,
       },
       {
+        children: [
+          { element: <Navigate to={PATH.ADMIN_PRODUCTS_GENERAL} />, path: '' },
+          {
+            element: <General />,
+            path: PATH.ADMIN_PRODUCTS_GENERAL,
+          },
+          {
+            element: <AvilableUsers />,
+            path: PATH.ADMIN_PRODUCTS_AVALIBLE_USERS,
+          },
+          { element: <Subscriptions />, path: PATH.ADMIN_PRODUCT_SUBSCRIPTIONS },
+          { element: <div>Manual</div>, path: PATH.ADMIN_PRODUCTS_MANUAL },
+        ],
         element: <AddProduct />,
         path: PATH.ADD_PRODUCT,
       },
