@@ -46,8 +46,8 @@ export const AddProduct = () => {
   return (
     <div>
       <Card className={s.card}>
-        <div>
-          <button onClick={() => navigate(-1)}>prev</button>
+        <div className={s.buttonBackWrapper}>
+          <Button onClick={() => navigate(-1)}>Back</Button>
         </div>
         <form className={s.form} onSubmit={formik.handleSubmit}>
           <div className={s.textFieldWrapper}>
