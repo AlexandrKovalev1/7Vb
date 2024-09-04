@@ -1,4 +1,4 @@
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import { PATH } from '@/app/router/routes'
 import { useAppDispatch, useAppSelector } from '@/app/store/store'
@@ -13,6 +13,7 @@ import s from './login.module.scss'
 export const Login = () => {
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(selectIsAuth)
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {

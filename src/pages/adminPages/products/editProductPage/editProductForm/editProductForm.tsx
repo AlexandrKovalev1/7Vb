@@ -18,14 +18,14 @@ export const EditProductForm = () => {
   return (
     <>
       <ProductForm
-        GoogleDriveFileID={product.GoogleDriveFileID}
-        availableToAll={product.availableToAll}
-        description={product.description}
-        id={product.id.toString()}
-        imageUrl={product.imageUrl}
-        name={product.name}
-        status={product.status}
-        type={product.type}
+        GoogleDriveFileID={product!.GoogleDriveFileID}
+        availableToAll={product!.availableToAll}
+        description={product!.description}
+        id={product!.id.toString()}
+        imageUrl={product!.imageUrl}
+        name={product!.name}
+        status={product!.status}
+        type={product!.type}
         variant={'edit'}
       />
     </>

@@ -51,3 +51,9 @@ export type EditProductResponse = {
   status: ProductStatus
   type: ProductType
 }
+
+export type CreateSubscriptionOptions = {
+  hours: number
+  price: number
+  productId: number
+}

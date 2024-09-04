@@ -30,7 +30,6 @@ export const AddProduct = () => {
           </li>
         </ul>
       </AdminTableNav>
-
       <Outlet />
     </div>
   )

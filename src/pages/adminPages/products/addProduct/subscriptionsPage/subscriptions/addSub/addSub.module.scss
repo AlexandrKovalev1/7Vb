@@ -1,0 +1,25 @@
+.formWrapper {
+  display: grid;
+  row-gap: 15px;
+  padding: 30px 50px;
+
+  & button {
+    justify-self: end;
+    padding: 5px 25px;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+
+  & label {
+    width: 50px;
+    text-align: end;
+  }
+}
+
+.textField {
+  width: 100%;
+}

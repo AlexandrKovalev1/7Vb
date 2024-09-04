@@ -2,6 +2,7 @@ import { createAppSlice } from '@/common/utils/createAppSilce'
 import { productsApi } from '@/slices/products/api/productsApi'
 import {
   AddProductOptions,
+  CreateSubscriptionOptions,
   EditProductOptions,
   ProductItem,
 } from '@/slices/products/products.types'
@@ -37,12 +38,34 @@ const slice = createAppSlice({
         }
       }
     ),
+    createSubscriptions: create.asyncThunk<{}, CreateSubscriptionOptions>(
+      async (options: CreateSubscriptionOptions, { rejectWithValue }) => {
+        try {
+          await productsApi.createSubscription(options)
+
+          return {}
+        } catch (e) {
+          if (
+            isAxiosError<{
+              message: string
+              status: string
+            }>(e)
+          ) {
+            if (e.response) {
+              return rejectWithValue({ message: e.response?.data.message })
+            } else {
+              return rejectWithValue({ message: e.message })
+            }
+          }
+
+          return rejectWithValue({ message: e })
+        }
+      }
+    ),
     editProduct: create.asyncThunk<{}, { id: string; options: EditProductOptions }>(
       async ({ id, options }: { id: string; options: EditProductOptions }, { rejectWithValue }) => {
         try {
-          const res = await productsApi.editProduct(id, options)
-
-          console.log(res)
+          await productsApi.editProduct(id, options)
 
           return {}
         } catch (e) {

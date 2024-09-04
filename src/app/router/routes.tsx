@@ -8,9 +8,9 @@ import { AdminProducts } from '@/pages/adminPages/products'
 import { AddProduct } from '@/pages/adminPages/products/addProduct'
 import { AvilableUsers } from '@/pages/adminPages/products/addProduct/avilableUsers/avilableUsers'
 import { General } from '@/pages/adminPages/products/addProduct/general/general'
-import { Subscriptions } from '@/pages/adminPages/products/addProduct/subscriptions'
+import { AddSub } from '@/pages/adminPages/products/addProduct/subscriptionsPage/subscriptions/addSub'
+import { SubscriptionsPage } from '@/pages/adminPages/products/addProduct/subscriptionsPage/subscriptionsPage'
 import { AdminProductsOutlet } from '@/pages/adminPages/products/adminProductsOutlet'
-import { EditProductPage } from '@/pages/adminPages/products/editProductPage'
 import { EditProductForm } from '@/pages/adminPages/products/editProductPage/editProductForm'
 import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
 import { Users } from '@/pages/adminPages/users'
@@ -26,12 +26,15 @@ import { ProductsPage } from '@/pages/userPages/products/productsPage'
 import { Support } from '@/pages/userPages/support/support'
 import { selectIsAuth } from '@/slices/auth/model/authSlice'
 
+import { Subscriptions } from '../../pages/adminPages/products/addProduct/subscriptionsPage/subscriptions'
+
 export const PATH = {
   ADD_PRODUCT: 'addProduct',
   ADMIN_PRODUCT_SUBSCRIPTIONS: 'subscriptions',
+  ADMIN_PRODUCT_SUBSCRIPTIONS_ADD: 'add-subscription',
   ADMIN_PRODUCTS_AVALIBLE_USERS: 'avalible-users',
   ADMIN_PRODUCTS_EDIT_PRODUCT: 'edit-product',
-  ADMIN_PRODUCTS_EDIT_PRODUCT_PAGE: ':id',
+  ADMIN_PRODUCTS_EDIT_PRODUCT_PAGE: ':edit-product/:id',
   ADMIN_PRODUCTS_GENERAL: 'general',
   ADMIN_PRODUCTS_MANUAL: 'manual',
   ADMIN_PRODUCTS_TRANSACTIONS: '',
@@ -62,6 +65,7 @@ export const DistributorOfPath = () => {
   const isAuth = useAppSelector(selectIsAuth)
 
   return isAuth ? <Navigate to={PATH.PRODUCTS} /> : <Navigate to={PATH.HOME} />
+  // return isAuth ? navigate(PATH.PRODUCTS) : navigate(PATH.HOME)
 }
 
 export const adminRoutes: RouteObject[] = [
@@ -89,18 +93,14 @@ export const adminRoutes: RouteObject[] = [
   },
   {
     children: [
-      {
-        children: [{ element: <EditProductForm />, path: PATH.ADMIN_PRODUCTS_EDIT_PRODUCT_PAGE }],
-        element: <EditProductPage />,
-        path: PATH.ADMIN_PRODUCTS_EDIT_PRODUCT,
-      },
+      { element: <EditProductForm />, path: PATH.ADMIN_PRODUCTS_EDIT_PRODUCT_PAGE },
       {
         element: <AdminProducts />,
-        path: PATH.PRODUCTS,
+        index: true,
       },
       {
         children: [
-          { element: <Navigate to={PATH.ADMIN_PRODUCTS_GENERAL} />, path: '' },
+          { element: <Navigate to={PATH.ADMIN_PRODUCTS_GENERAL} />, index: true },
           {
             element: <General />,
             path: PATH.ADMIN_PRODUCTS_GENERAL,
@@ -109,7 +109,17 @@ export const adminRoutes: RouteObject[] = [
             element: <AvilableUsers />,
             path: PATH.ADMIN_PRODUCTS_AVALIBLE_USERS,
           },
-          { element: <Subscriptions />, path: PATH.ADMIN_PRODUCT_SUBSCRIPTIONS },
+          {
+            children: [
+              {
+                element: <Subscriptions />,
+                index: true,
+              },
+              { element: <AddSub />, path: PATH.ADMIN_PRODUCT_SUBSCRIPTIONS_ADD },
+            ],
+            element: <SubscriptionsPage />,
+            path: PATH.ADMIN_PRODUCT_SUBSCRIPTIONS,
+          },
           { element: <div>Manual</div>, path: PATH.ADMIN_PRODUCTS_MANUAL },
         ],
         element: <AddProduct />,

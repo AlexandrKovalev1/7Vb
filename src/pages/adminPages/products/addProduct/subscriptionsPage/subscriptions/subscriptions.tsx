@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom'
 
+import { PATH } from '@/app/router/routes'
 import { Button, Card, Table } from '@/components'
 
 export const Subscriptions = () => {
   return (
-    <Table buttonTitle={'Add Sub'} heading={'Subs'} params={['Id', 'Time', 'Price', '']}>
+    <Table
+      buttonTitle={'Add Sub'}
+      heading={'Subs'}
+      params={['Id', 'Time', 'Price', '']}
+      pathLink={PATH.ADMIN_PRODUCT_SUBSCRIPTIONS_ADD}
+    >
       <AdminSubscriptionItem />
     </Table>
   )

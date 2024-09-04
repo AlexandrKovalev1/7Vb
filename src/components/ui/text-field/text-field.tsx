@@ -9,7 +9,7 @@ export type TextFieldProps = {
   clearField?: () => void
   errorMessage?: string
   label?: string
-  type?: 'password' | 'search' | 'text'
+  type?: 'number' | 'password' | 'search' | 'text'
   variant?: 'login' | 'primary'
 } & ComponentPropsWithoutRef<'input'>
 
@@ -52,7 +52,7 @@ export const TextField = forwardRef<HTMLInputElement, PropsType>(
             <input
               className={classes.input}
               ref={ref}
-              type={isPasswordType ? finalType : 'text'}
+              type={isPasswordType ? finalType : type}
               {...rest}
             />
             {isPasswordType && (
@@ -91,5 +91,5 @@ function getFinalType(type: TextFieldProps['type'], showPassword: boolean) {
     return 'password'
   }
 
-  return 'text'
+  return type
 }
