@@ -30,7 +30,7 @@ export const AddSub = () => {
   return (
     <Card as={'form'} className={s.formWrapper} onSubmit={formik.handleSubmit}>
       <div className={s.inputWrapper}>
-        <label htmlFor={'id'}>Id</label>
+        <label htmlFor={'id'}>productId</label>
         <TextField
           className={s.textField}
           id={'id'}

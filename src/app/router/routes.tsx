@@ -6,7 +6,7 @@ import { SignUp } from '@/components/auth/signUp/signUp'
 import { Layout } from '@/components/layout/layout'
 import { AdminProducts } from '@/pages/adminPages/products'
 import { AddProduct } from '@/pages/adminPages/products/addProduct'
-import { AvilableUsers } from '@/pages/adminPages/products/addProduct/avilableUsers/avilableUsers'
+import { AvailableUsers } from '@/pages/adminPages/products/addProduct/availableUsers/availableUsers'
 import { General } from '@/pages/adminPages/products/addProduct/general/general'
 import { AddSub } from '@/pages/adminPages/products/addProduct/subscriptionsPage/subscriptions/addSub'
 import { SubscriptionsPage } from '@/pages/adminPages/products/addProduct/subscriptionsPage/subscriptionsPage'
@@ -106,7 +106,7 @@ export const adminRoutes: RouteObject[] = [
             path: PATH.ADMIN_PRODUCTS_GENERAL,
           },
           {
-            element: <AvilableUsers />,
+            element: <AvailableUsers />,
             path: PATH.ADMIN_PRODUCTS_AVALIBLE_USERS,
           },
           {

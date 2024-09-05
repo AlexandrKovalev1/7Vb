@@ -57,3 +57,8 @@ export type CreateSubscriptionOptions = {
   price: number
   productId: number
 }
+
+export type AvailableUser = {
+  id: number
+  username: string
+}
