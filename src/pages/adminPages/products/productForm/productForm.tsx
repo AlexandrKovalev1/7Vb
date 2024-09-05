@@ -4,7 +4,7 @@ import { PATH } from '@/app/router/routes'
 import { useAppDispatch } from '@/app/store/store'
 import { Button, Card, Checkbox, Select, TextField } from '@/components'
 import { productsThunks } from '@/slices/products/model/productsSlice'
-import { EditProductOptions, ProductStatus, ProductType } from '@/slices/products/products.types'
+import { ProductStatus, ProductType } from '@/slices/products/products.types'
 import { useFormik } from 'formik'
 
 import s from './productForm.module.scss'
@@ -33,13 +33,14 @@ export const ProductForm = ({
   variant = 'add',
 }: Props) => {
   const addInit = {
-    allowedUsers: [],
-    availableToAll: true,
+    GoogleDriveFileID: '',
+    availableToAll: false,
     description: '',
     imageUrl:
       'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1719426374',
     name: '',
     status: '',
+    type: '',
   }
 
   const editInit = {
@@ -88,13 +89,11 @@ export const ProductForm = ({
     initialValues: variant === 'add' ? addInit : editInit,
     onSubmit: values => {
       if (variant === 'add') {
-        dispatch(productsThunks.addProduct(values as typeof addInit))
+        dispatch(productsThunks.addProduct(values))
           .unwrap()
           .then(() => navigate(PATH.PRODUCTS))
       } else {
-        dispatch(
-          productsThunks.editProduct({ id: id as string, options: values as EditProductOptions })
-        )
+        dispatch(productsThunks.editProduct({ id: id as string, options: values }))
           .unwrap()
           .then(() => navigate(PATH.PRODUCTS))
       }
@@ -124,43 +123,31 @@ export const ProductForm = ({
           placeholder={'Select status'}
         />
       </div>
-      {variant === 'edit' && (
-        <>
-          <div className={s.textFieldWrapper}>
-            <label>Type</label>
-            <Select
-              defaultValue={type}
-              onValueChange={v => formik.setFieldValue('type', v)}
-              options={selectTypeOptions}
-              placeholder={'Select type'}
-            />
-          </div>
-          <div className={s.textFieldWrapper}>
-            <label htmlFor={'GoogleDriveFileID'}>GoogleDriveFileID</label>
-            <TextField id={'GoogleDriveFileID'} {...formik.getFieldProps('GoogleDriveFileID')} />
-          </div>
-        </>
-      )}
+      <div className={s.textFieldWrapper}>
+        <label>Type</label>
+        <Select
+          defaultValue={type}
+          onValueChange={v => formik.setFieldValue('type', v)}
+          options={selectTypeOptions}
+          placeholder={'Select type'}
+        />
+      </div>
+      <div className={s.textFieldWrapper}>
+        <label htmlFor={'GoogleDriveFileID'}>GoogleDriveFileID</label>
+        <TextField id={'GoogleDriveFileID'} {...formik.getFieldProps('GoogleDriveFileID')} />
+      </div>
       <div className={s.textFieldWrapper}>
         <label htmlFor={'imageUrl'}>ImageUrl</label>
         <TextField id={'imageUrl'} {...formik.getFieldProps('imageUrl')} />
       </div>
-      <div className={s.textFieldWrapper}>
-        <label htmlFor={'checkbox'}>AvailableToAll</label>
-        <Checkbox
-          checked={formik.values.availableToAll}
-          className={s.checkbox}
-          id={'checkbox'}
-          onChange={v => formik.setFieldValue('availableToAll', v)}
-        />
-      </div>
-      {variant === 'add' && (
+      {variant === 'edit' && (
         <div className={s.textFieldWrapper}>
-          <label htmlFor={'allowedUsers'}>AllowedUsers</label>
-          <TextField
-            id={'allowedUsers'}
-            onChange={e => formik.setFieldValue('allowedUsers', `[${e.currentTarget.value}]`)}
-            placeholder={'передай id через, типо 1,2,3...'}
+          <label htmlFor={'checkbox'}>AvailableToAll</label>
+          <Checkbox
+            checked={formik.values.availableToAll}
+            className={s.checkbox}
+            id={'checkbox'}
+            onChange={v => formik.setFieldValue('availableToAll', v)}
           />
         </div>
       )}

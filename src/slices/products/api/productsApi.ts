@@ -1,14 +1,13 @@
 import { instance } from '@/services/api/api'
 import {
-  AddProductOptions,
+  AddOrEditProductOptions,
   AvailableUser,
   CreateSubscriptionOptions,
-  EditProductOptions,
   ProductItem,
 } from '@/slices/products/products.types'
 
 export const productsApi = {
-  addProduct: (options: AddProductOptions) => {
+  addProduct: (options: AddOrEditProductOptions) => {
     return instance.post('products/add', options)
   },
   createSubscription: (options: CreateSubscriptionOptions) => {
@@ -18,7 +17,7 @@ export const productsApi = {
   deleteProduct: (id: number) => {
     return instance.delete(`products/delete/${id}`)
   },
-  editProduct: (id: string, options: EditProductOptions) => {
+  editProduct: (id: string, options: AddOrEditProductOptions) => {
     return instance.put(`products/edit/${id}`, options)
   },
   getAvailableUsers: () => {

@@ -15,7 +15,7 @@ export const AddProduct = () => {
           </li>
           <li>
             <NavLink className={classNameHandler} to={PATH.ADMIN_PRODUCTS_AVALIBLE_USERS}>
-              <span>Avalible Users</span>
+              <span>Available Users</span>
             </NavLink>
           </li>
           <li>

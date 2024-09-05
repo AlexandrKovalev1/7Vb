@@ -21,16 +21,7 @@ export type ProductStatus = 'Active' | 'NotActive' | 'OnUpdate'
 
 export type ProductType = 'Alpha' | 'Beta' | 'Stable'
 
-export type AddProductOptions = {
-  allowedUsers: number[]
-  availableToAll: boolean
-  description: string
-  imageUrl: string
-  name: string
-  status: string
-}
-
-export type EditProductOptions = {
+export type AddOrEditProductOptions = {
   GoogleDriveFileID: string
   availableToAll: boolean
   description: string
