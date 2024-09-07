@@ -1,15 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 
-import { PATH } from '@/app/router/routes'
 import { Button, Card, Table } from '@/components'
+import { AddSub } from '@/pages/adminPages/products/editProductPage/subscriptions/addSub'
 
 export const Subscriptions = () => {
+  const id = useOutletContext<string>()
+
   return (
     <Table
       buttonTitle={'Add Sub'}
+      // dialog={<AddSub id={+id} />}
       heading={'Subs'}
       params={['Id', 'Time', 'Price', '']}
-      pathLink={PATH.ADMIN_PRODUCT_SUBSCRIPTIONS_ADD}
     >
       <AdminSubscriptionItem />
     </Table>

@@ -1,0 +1,109 @@
+/* reset */
+fieldset {
+  all: unset;
+}
+
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0 0 0 / 80%);
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dialogContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90vw;
+  max-width: 450px;
+  max-height: 85vh;
+  padding: 25px;
+
+  color: var(--color-dark-text);
+
+  background-color: var(--color-dark-secondary);
+  border-radius: 6px;
+  box-shadow:
+    hsl(206deg 22% 7% / 35%) 0 10px 38px -10px,
+    hsl(206deg 22% 7% / 20%) 0 10px 20px -15px;
+
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.dialogTitle {
+  margin: 0 0 20px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.dialogDescription {
+  margin: 10px 0 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-dark-accent-1);
+}
+
+.iconButton {
+  cursor: pointer;
+
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+
+  font-family: inherit;
+  color: var(--color-dark-icons);
+
+  border-radius: 100%;
+
+  &:hover {
+    background-color: var(--color-dark-accent-1);
+  }
+}
+
+.fieldset {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.label {
+  width: 90px;
+  font-size: 15px;
+  text-align: right;
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    transform: translate(-50%, -48%) scale(0.96);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}

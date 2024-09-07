@@ -8,6 +8,7 @@ import s from './table.module.scss'
 type Props = {
   buttonTitle: string
   children?: ReactNode
+  dialog?: ReactNode
   heading: string
   params: string[]
   pathLink?: string
@@ -17,6 +18,7 @@ type Props = {
 export const Table = ({
   buttonTitle,
   children,
+  dialog,
   heading,
   params,
   pathLink,
@@ -31,9 +33,13 @@ export const Table = ({
           <td></td>
           {variant !== 'users' && <td></td>}
           <td>
-            <Button as={Link} to={pathLink || '/'} variant={'table'}>
-              {buttonTitle}
-            </Button>
+            {dialog ? (
+              dialog
+            ) : (
+              <Button as={Link} to={pathLink || '/'} variant={'table'}>
+                {buttonTitle}
+              </Button>
+            )}
           </td>
         </tr>
         <tr>{params?.map((i, index) => <td key={index}>{i}</td>)}</tr>

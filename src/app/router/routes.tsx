@@ -6,12 +6,12 @@ import { SignUp } from '@/components/auth/signUp/signUp'
 import { Layout } from '@/components/layout/layout'
 import { AdminProducts } from '@/pages/adminPages/products'
 import { AddProduct } from '@/pages/adminPages/products/addProduct'
-import { AvailableUsers } from '@/pages/adminPages/products/addProduct/availableUsers/availableUsers'
-import { General } from '@/pages/adminPages/products/addProduct/general/general'
-import { AddSub } from '@/pages/adminPages/products/addProduct/subscriptionsPage/subscriptions/addSub'
-import { SubscriptionsPage } from '@/pages/adminPages/products/addProduct/subscriptionsPage/subscriptionsPage'
 import { AdminProductsOutlet } from '@/pages/adminPages/products/adminProductsOutlet'
-import { EditProductForm } from '@/pages/adminPages/products/editProductPage/editProductForm'
+import { EditProductPage } from '@/pages/adminPages/products/editProductPage'
+import { AvailableUsers } from '@/pages/adminPages/products/editProductPage/availableUsers/availableUsers'
+import { General } from '@/pages/adminPages/products/editProductPage/general/general'
+import { AddSub } from '@/pages/adminPages/products/editProductPage/subscriptions/addSub'
+import { SubscriptionsPage } from '@/pages/adminPages/products/editProductPage/subscriptionsPage/subscriptionsPage'
 import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
 import { Users } from '@/pages/adminPages/users'
 import { PageNotFound } from '@/pages/publicPages'
@@ -26,7 +26,7 @@ import { ProductsPage } from '@/pages/userPages/products/productsPage'
 import { Support } from '@/pages/userPages/support/support'
 import { selectIsAuth } from '@/slices/auth/model/authSlice'
 
-import { Subscriptions } from '../../pages/adminPages/products/addProduct/subscriptionsPage/subscriptions'
+import { Subscriptions } from '../../pages/adminPages/products/editProductPage/subscriptions'
 
 export const PATH = {
   ADD_PRODUCT: 'addProduct',
@@ -93,11 +93,6 @@ export const adminRoutes: RouteObject[] = [
   },
   {
     children: [
-      { element: <EditProductForm />, path: PATH.ADMIN_PRODUCTS_EDIT_PRODUCT_PAGE },
-      {
-        element: <AdminProducts />,
-        index: true,
-      },
       {
         children: [
           { element: <Navigate to={PATH.ADMIN_PRODUCTS_GENERAL} />, index: true },
@@ -110,18 +105,19 @@ export const adminRoutes: RouteObject[] = [
             path: PATH.ADMIN_PRODUCTS_AVALIBLE_USERS,
           },
           {
-            children: [
-              {
-                element: <Subscriptions />,
-                index: true,
-              },
-              { element: <AddSub />, path: PATH.ADMIN_PRODUCT_SUBSCRIPTIONS_ADD },
-            ],
-            element: <SubscriptionsPage />,
+            element: <Subscriptions />,
             path: PATH.ADMIN_PRODUCT_SUBSCRIPTIONS,
           },
           { element: <div>Manual</div>, path: PATH.ADMIN_PRODUCTS_MANUAL },
         ],
+        element: <EditProductPage />,
+        path: PATH.ADMIN_PRODUCTS_EDIT_PRODUCT_PAGE,
+      },
+      {
+        element: <AdminProducts />,
+        index: true,
+      },
+      {
         element: <AddProduct />,
         path: PATH.ADD_PRODUCT,
       },

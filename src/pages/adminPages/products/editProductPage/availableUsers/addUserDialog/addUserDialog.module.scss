@@ -1,0 +1,17 @@
+/* reset */
+fieldset {
+  all: unset;
+}
+
+.fieldset {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.label {
+  width: 90px;
+  font-size: 15px;
+  text-align: right;
+}
