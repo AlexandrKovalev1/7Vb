@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useOutletContext } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/store/store'
 import { Button, Card, Table } from '@/components'

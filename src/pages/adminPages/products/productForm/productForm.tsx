@@ -4,7 +4,11 @@ import { PATH } from '@/app/router/routes'
 import { useAppDispatch } from '@/app/store/store'
 import { Button, Card, Checkbox, Select, TextField } from '@/components'
 import { productsThunks } from '@/slices/products/model/productsSlice'
-import { ProductStatus, ProductType } from '@/slices/products/products.types'
+import {
+  AddOrEditProductOptions,
+  ProductStatus,
+  ProductType,
+} from '@/slices/products/products.types'
 import { useFormik } from 'formik'
 
 import s from './productForm.module.scss'
@@ -28,7 +32,7 @@ export const ProductForm = ({
   id,
   imageUrl,
   name,
-  status = 'Active',
+  status,
   type,
   variant = 'add',
 }: Props) => {
@@ -39,8 +43,8 @@ export const ProductForm = ({
     imageUrl:
       'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1719426374',
     name: '',
-    status: '',
-    type: '',
+    status: '' as ProductStatus,
+    type: '' as ProductType,
   }
 
   const editInit = {
@@ -89,11 +93,16 @@ export const ProductForm = ({
     initialValues: variant === 'add' ? addInit : editInit,
     onSubmit: values => {
       if (variant === 'add') {
-        dispatch(productsThunks.addProduct(values))
+        dispatch(productsThunks.addProduct(values as AddOrEditProductOptions))
           .unwrap()
           .then(() => navigate(PATH.PRODUCTS))
       } else {
-        dispatch(productsThunks.editProduct({ id: id as string, options: values }))
+        dispatch(
+          productsThunks.editProduct({
+            id: id as string,
+            options: values as AddOrEditProductOptions,
+          })
+        )
           .unwrap()
           .then(() => navigate(PATH.PRODUCTS))
       }
