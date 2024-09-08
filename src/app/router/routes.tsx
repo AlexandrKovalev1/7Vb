@@ -10,7 +10,7 @@ import { AdminProductsOutlet } from '@/pages/adminPages/products/adminProductsOu
 import { EditProductPage } from '@/pages/adminPages/products/editProductPage'
 import { AvailableUsers } from '@/pages/adminPages/products/editProductPage/availableUsers/availableUsers'
 import { General } from '@/pages/adminPages/products/editProductPage/general/general'
-import { AddSub } from '@/pages/adminPages/products/editProductPage/subscriptions/addSub'
+import { SubForm } from '@/pages/adminPages/products/editProductPage/subscriptions/addSub'
 import { SubscriptionsPage } from '@/pages/adminPages/products/editProductPage/subscriptionsPage/subscriptionsPage'
 import { AdminSupport, AdminSupportPage, SupportTicket } from '@/pages/adminPages/support'
 import { Users } from '@/pages/adminPages/users'

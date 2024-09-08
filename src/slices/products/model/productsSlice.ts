@@ -6,6 +6,7 @@ import {
   AvailableSubscription,
   AvailableUser,
   CreateSubscriptionOptions,
+  EditSubscriptionOptions,
   ProductItem,
 } from '@/slices/products/products.types'
 import { isAxiosError } from 'axios'
@@ -143,6 +144,28 @@ const slice = createAppSlice({
         },
       }
     ),
+    deleteSubscription: create.asyncThunk<{}, number>(async (id: number, { rejectWithValue }) => {
+      try {
+        await productsApi.deleteSubscription(id)
+
+        return {}
+      } catch (e) {
+        if (
+          isAxiosError<{
+            message: string
+            status: string
+          }>(e)
+        ) {
+          if (e.response) {
+            return rejectWithValue({ message: e.response?.data.message })
+          } else {
+            return rejectWithValue({ message: e.message })
+          }
+        }
+
+        return rejectWithValue({ message: e })
+      }
+    }),
     editProduct: create.asyncThunk<{}, { id: string; options: AddOrEditProductOptions }>(
       async (
         { id, options }: { id: string; options: AddOrEditProductOptions },
@@ -150,6 +173,33 @@ const slice = createAppSlice({
       ) => {
         try {
           await productsApi.editProduct(id, options)
+
+          return {}
+        } catch (e) {
+          if (
+            isAxiosError<{
+              message: string
+              status: string
+            }>(e)
+          ) {
+            if (e.response) {
+              return rejectWithValue({ message: e.response?.data.message })
+            } else {
+              return rejectWithValue({ message: e.message })
+            }
+          }
+
+          return rejectWithValue({ message: e })
+        }
+      }
+    ),
+    editSubscription: create.asyncThunk<{}, { id: number; options: EditSubscriptionOptions }>(
+      async (
+        { id, options }: { id: number; options: EditSubscriptionOptions },
+        { rejectWithValue }
+      ) => {
+        try {
+          await productsApi.editSubscription(id, options)
 
           return {}
         } catch (e) {

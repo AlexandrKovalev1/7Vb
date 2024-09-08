@@ -5,6 +5,7 @@ import {
   AvailableSubscription,
   AvailableUser,
   CreateSubscriptionOptions,
+  EditSubscriptionOptions,
   ProductItem,
 } from '@/slices/products/products.types'
 
@@ -21,8 +22,14 @@ export const productsApi = {
   deleteProduct: (id: number) => {
     return instance.delete(`products/delete/${id}`)
   },
+  deleteSubscription: (idSubscription: number) => {
+    return instance.delete(`subscriptions/delete/${idSubscription}`)
+  },
   editProduct: (id: string, options: AddOrEditProductOptions) => {
     return instance.put(`products/edit/${id}`, options)
+  },
+  editSubscription: (idSubscription: number, options: EditSubscriptionOptions) => {
+    return instance.put(`subscriptions/edit/${idSubscription}`, options)
   },
   getAvailableSubscription: (id: number) => {
     return instance.get<AvailableSubscription[]>(`products/getsub/${id}`)

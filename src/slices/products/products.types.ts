@@ -48,6 +48,7 @@ export type CreateSubscriptionOptions = {
   price: number
   productId: number
 }
+export type EditSubscriptionOptions = Omit<CreateSubscriptionOptions, 'productId'>
 
 export type AvailableUser = {
   id: number
