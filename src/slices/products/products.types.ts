@@ -58,3 +58,8 @@ export type AddOrRemoveAvailableUserData = {
   productId: number
   userId: number
 }
+export type AvailableSubscription = {
+  id: number
+  price: number
+  time: string
+}

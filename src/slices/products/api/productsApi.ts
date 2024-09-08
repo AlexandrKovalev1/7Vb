@@ -2,6 +2,7 @@ import { instance } from '@/services/api/api'
 import {
   AddOrEditProductOptions,
   AddOrRemoveAvailableUserData,
+  AvailableSubscription,
   AvailableUser,
   CreateSubscriptionOptions,
   ProductItem,
@@ -22,6 +23,9 @@ export const productsApi = {
   },
   editProduct: (id: string, options: AddOrEditProductOptions) => {
     return instance.put(`products/edit/${id}`, options)
+  },
+  getAvailableSubscription: (id: number) => {
+    return instance.get<AvailableSubscription[]>(`products/getsub/${id}`)
   },
   getAvailableUsers: (id: number) => {
     return instance.get<AvailableUser[]>(`products/${id}/users`)

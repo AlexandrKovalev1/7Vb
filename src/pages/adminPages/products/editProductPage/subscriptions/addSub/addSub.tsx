@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/store/store'
 import { TextField } from '@/components'
@@ -22,35 +21,48 @@ export const AddSub = ({ id }: Props) => {
     initialValues: {
       hours: 0,
       price: 0,
-      productId: 0,
+      productId: id,
     },
     onSubmit: values => {
       dispatch(productsThunks.createSubscriptions(values))
         .unwrap()
         .then(() => {
-          navigate(-1)
+          dispatch(productsThunks.fetchAvailableSubscriptions(id))
+          setOpen(false)
         })
     },
   })
 
   return (
     <Dialog onOpenChange={setOpen} open={open}>
-      <DialogTriger triggerTitle={'Add User'} />
-      <DialogContent description={'Enter the user id you want to add'} title={'Add user'}>
+      <DialogTriger triggerTitle={'Add sub'} />
+      <DialogContent
+        description={'Enter the count hours and price you want to add'}
+        title={'Add user'}
+      >
         <DialogForm onSubmit={formik.handleSubmit}>
           <fieldset className={s.fieldset}>
-            <label className={s.label} htmlFor={'id'}>
-              productId
+            <label className={s.label} htmlFor={'hours'}>
+              hours
             </label>
             <TextField
               className={s.textField}
-              id={'id'}
-              {...formik.getFieldProps('productId')}
+              id={'hours'}
+              {...formik.getFieldProps('hours')}
               type={'number'}
             />
           </fieldset>
-          <fieldset className={s.fieldset}></fieldset>
-          <fieldset className={s.fieldset}></fieldset>
+          <fieldset className={s.fieldset}>
+            <label className={s.label} htmlFor={'price'}>
+              price
+            </label>
+            <TextField
+              className={s.textField}
+              id={'price'}
+              {...formik.getFieldProps('price')}
+              type={'number'}
+            />
+          </fieldset>
         </DialogForm>
       </DialogContent>
     </Dialog>

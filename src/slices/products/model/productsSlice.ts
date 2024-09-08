@@ -3,6 +3,7 @@ import { productsApi } from '@/slices/products/api/productsApi'
 import {
   AddOrEditProductOptions,
   AddOrRemoveAvailableUserData,
+  AvailableSubscription,
   AvailableUser,
   CreateSubscriptionOptions,
   ProductItem,
@@ -11,6 +12,7 @@ import { isAxiosError } from 'axios'
 
 const slice = createAppSlice({
   initialState: {
+    availableSubscription: [] as AvailableSubscription[],
     availableUsers: [] as AvailableUser[],
     products: [] as ProductItem[],
   },
@@ -168,6 +170,38 @@ const slice = createAppSlice({
         }
       }
     ),
+    fetchAvailableSubscriptions: create.asyncThunk<
+      { availableSubscription: AvailableSubscription[] },
+      number
+    >(
+      async (id: number, { rejectWithValue }) => {
+        try {
+          const res = await productsApi.getAvailableSubscription(id)
+
+          return { availableSubscription: res.data }
+        } catch (e) {
+          if (
+            isAxiosError<{
+              message: string
+              status: string
+            }>(e)
+          ) {
+            if (e.response) {
+              return rejectWithValue({ message: e.response?.data.message })
+            } else {
+              return rejectWithValue({ message: e.message })
+            }
+          }
+
+          return rejectWithValue({ message: e })
+        }
+      },
+      {
+        fulfilled: (state, action) => {
+          state.availableSubscription = action.payload.availableSubscription
+        },
+      }
+    ),
     fetchAvailableUsers: create.asyncThunk<{ availableUsers: AvailableUser[] }, number>(
       async (id: number) => {
         const res = await productsApi.getAvailableUsers(id)
@@ -194,6 +228,7 @@ const slice = createAppSlice({
     ),
   }),
   selectors: {
+    selectAvailableSubscriptions: state => state.availableSubscription,
     selectAvailableUsers: state => state.availableUsers,
     selectProducts: state => state.products,
   },
@@ -201,4 +236,5 @@ const slice = createAppSlice({
 
 export const productsThunks = slice.actions
 export const productsReducer = slice.reducer
-export const { selectAvailableUsers, selectProducts } = slice.selectors
+export const { selectAvailableSubscriptions, selectAvailableUsers, selectProducts } =
+  slice.selectors
