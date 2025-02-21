@@ -70,6 +70,9 @@ export const SignUp = () => {
               variant={'login'}
               {...formik.getFieldProps('email')}
             />
+            <b className={s.notification}>
+              Attention. Temporarily the login and password cannot be restored
+            </b>
             <Button
               className={s.button}
               disabled={!!Object.keys(formik.errors).length}
