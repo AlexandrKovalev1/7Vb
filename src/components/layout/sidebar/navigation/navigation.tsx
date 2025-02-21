@@ -39,7 +39,7 @@ export const Navigation = ({ isAdmin }: Props) => {
           </NavLink>
         </li>
         {/*<li className={s.listItem}>{isAdmin ? usersItem : balanceItem}</li>*/}
-        {isAdmin && <li className={s.listItem}>{balanceItem}</li>}
+        {isAdmin && <li className={s.listItem}>{usersItem}</li>}
         <li className={s.listItem}>
           <NavLink className={classNameHandler} to={PATH.NEWS}>
             <div className={s.iconWrapper}>
