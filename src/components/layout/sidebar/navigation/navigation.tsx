@@ -38,7 +38,8 @@ export const Navigation = ({ isAdmin }: Props) => {
             <span>Products</span>
           </NavLink>
         </li>
-        <li className={s.listItem}>{isAdmin ? usersItem : balanceItem}</li>
+        {/*<li className={s.listItem}>{isAdmin ? usersItem : balanceItem}</li>*/}
+        {isAdmin && <li className={s.listItem}>{balanceItem}</li>}
         <li className={s.listItem}>
           <NavLink className={classNameHandler} to={PATH.NEWS}>
             <div className={s.iconWrapper}>
@@ -47,22 +48,26 @@ export const Navigation = ({ isAdmin }: Props) => {
             <span>News</span>
           </NavLink>
         </li>
-        <li className={s.listItem}>
-          <NavLink className={classNameHandler} to={PATH.SUPPORT}>
-            <div className={s.iconWrapper}>
-              <Icon height={36} name={'support'} viewBox={'0 0 35 36'} width={35} />
-            </div>
-            <span>Support</span>
-          </NavLink>
-        </li>
-        <li className={s.listItem}>
-          <NavLink className={classNameHandler} to={PATH.SETTINGS}>
-            <div className={s.iconWrapper}>
-              <Icon height={36} name={'settings'} viewBox={'0 0 31 36'} width={31} />
-            </div>
-            <span>Settings</span>
-          </NavLink>
-        </li>
+        {isAdmin && (
+          <li className={s.listItem}>
+            <NavLink className={classNameHandler} to={PATH.SUPPORT}>
+              <div className={s.iconWrapper}>
+                <Icon height={36} name={'support'} viewBox={'0 0 35 36'} width={35} />
+              </div>
+              <span>Support</span>
+            </NavLink>
+          </li>
+        )}
+        {isAdmin && (
+          <li className={s.listItem}>
+            <NavLink className={classNameHandler} to={PATH.SETTINGS}>
+              <div className={s.iconWrapper}>
+                <Icon height={36} name={'settings'} viewBox={'0 0 31 36'} width={31} />
+              </div>
+              <span>Settings</span>
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   )

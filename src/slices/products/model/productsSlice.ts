@@ -1,4 +1,5 @@
 import { createAppSlice } from '@/common/utils/createAppSilce'
+import { logOut } from '@/slices/auth/model/authSlice'
 import { productsApi } from '@/slices/products/api/productsApi'
 import {
   AddOrEditProductOptions,
@@ -12,6 +13,13 @@ import {
 import { isAxiosError } from 'axios'
 
 const slice = createAppSlice({
+  extraReducers: builder => {
+    builder.addCase(logOut.fulfilled, state => {
+      state.products = []
+      state.availableSubscription = []
+      state.availableUsers = []
+    })
+  },
   initialState: {
     availableSubscription: [] as AvailableSubscription[],
     availableUsers: [] as AvailableUser[],
